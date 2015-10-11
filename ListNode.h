@@ -4,6 +4,7 @@
 template <class T> 
 class ListNode {
 	public:
+		ListNode();
 		const T& getData() const;
 		void setData (const T& value);
 		ListNode* getNext() const;

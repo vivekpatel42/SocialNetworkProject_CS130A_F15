@@ -1,24 +1,35 @@
 #include "DoubleLinkedList.h"
 
-DoubleLinkedList::DoubleLinkedList() { }
+DoubleLinkedList::DoubleLinkedList() 
+{
+	ListNode l = new ListNode();
+	this -> head = &l;
+	head -> prev = NULL;
+	head -> next = NULL;
+	count = 1;
+}
 
-DoubleLinkedList::ListNode* getHead() const
+ListNode* DoubleLinkedList::getHead() const
 {
 	return this -> head;
 }
 
-DoubleLinkedList::void setHead(ListNode* l)
+void DoubleLinkedList::addHead(ListNode* l)
 {
 	// Not yet fully implemented!!!
 	
 	if (head) 
 	{
-		ListNode*
+		head -> prev = l;
+		l -> next = head;
+		l -> prev = NULL;
+		head = l;
+		count++;
 	}
 	this -> head = l;
 }
 
-DoubleLinkedList::ListNode* getItem(int n) const
+ListNode* DoubleLinkedList::getItem(int n) const
 {
 	ListNode* result = this -> head;
 	while (n != 0)
@@ -29,7 +40,7 @@ DoubleLinkedList::ListNode* getItem(int n) const
 	return result;
 }
 
-DoubleLinkedList::void setItem(int n, ListNode* l)
+void DoubleLinkedList::insertItem(int n, ListNode* l)
 {
 	if (n == 0)
 	{
@@ -38,3 +49,16 @@ DoubleLinkedList::void setItem(int n, ListNode* l)
 	}
 
 }	
+
+void DoubleLinkedList::appendItem(ListNode* l)
+{
+	ListNode* temp = this -> head;
+	for (int i = 0; i < count - 1; i++)
+	{
+		temp = temp -> next;
+	}
+	l -> prev = temp;
+	temp -> next = l;
+	l -> next = NULL;
+	count++;
+}

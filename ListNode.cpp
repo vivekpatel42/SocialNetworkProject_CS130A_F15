@@ -2,32 +2,37 @@
 
 ListNode::ListNode() { }
 
-ListNode::const T& getData() const 
+ListNode::ListNode(const T& value)
+{
+	
+}
+
+const T& ListNode::getData() const 
 {
 	return this.T;
 }
 
-ListNode::void setData(const T& value) 
+void ListNode::setData(const T& value) 
 {
 	this.T = value;
 }
 
-ListNode::ListNode* getNext() const 
+ListNode* ListNode::getNext() const 
 {
 	return this -> next;
 }
 
-ListNode::void setNext(ListNode* l)
+void ListNode::setNext(ListNode* l)
 {
 	this -> next = l;
 }
 
-ListNode::ListNode* getPrev() const
+ListNode* ListNode::getPrev() const
 {
 	return this -> prev;
 }
 
-ListNode::void setPrev(ListNode* l)
+void ListNode::setPrev(ListNode* l)
 {
 	this -> prev = l;
 }

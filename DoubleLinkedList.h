@@ -1,20 +1,66 @@
 #ifndef DOUBLELINKEDLIST_H
 #define DOUBLELINKEDLIST_H
 
+using namespace std;
+
 template <class T> 
 class DoubleLinkedList {
 	
 	public:
-		DoubleLinkedList(); // Creates a new DoubleLinkedList object with an empty HEAD node.
-		DoubleLinkedList(ListNode* head); // Creates a new DoubleLinkedList object with the specified HEAD node.
-		ListNode* getHead() const; // Gets the HEAD node.
-		void addHead(ListNode* l); // Adds a new ListNode as the HEAD node.
-		ListNode* getItem(int n) const; // Gets the ListNode item at the specified index.
-		void insertItem(int n, ListNode* l); // Inserts ListNode at the specified index.
-		void appendItem(ListNode* l); // Appends ListNode to the end of the list.
+
+		// Creates a new DoubleLinkedList object with the specified HEAD node. CANNOT have empty list.
+		explicit DoubleLinkedList(ListNode<T> * value)
+		{
+			head = value;
+			head -> setPrev(NULL);
+			head -> setNext(NULL);
+			count = 1;
+		} 
+		
+		// Gets the HEAD node.
+		ListNode<T> * getHead() const
+		{
+			return head;
+		} 
+
+		// Appends ListNode to the end of the list.
+
+		void appendItem(const T & value)
+		{
+			ListNode<T> * l = new ListNode<T>(value);
+			ListNode<T> * temp = this -> head;
+			for (int i = 0; i < count - 1; i++)
+			{
+				temp = temp -> getNext();
+			}
+			l -> setPrev(temp);
+			temp -> setNext(l);
+			l -> setNext(NULL);
+			count++;
+		} 
+
+		void printList()
+		{
+			ListNode<T> * l = head;
+			while (l)
+			{
+				l -> printNode();
+				l = l -> getNext();
+			}
+		}
+
+		~DoubleLinkedList() 
+		{
+			while (head) 
+			{
+				ListNode<T> * next = head -> getNext();
+				delete head;
+				head = next;
+			}
+		}
 
 	private:
-		ListNode *head;
+		ListNode<T> * head;
 		int count;
 };
 

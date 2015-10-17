@@ -26,13 +26,13 @@ int main()
 	WallPost * wp3 = new WallPost("This is the fourth post", "Happy");
 	w -> posts -> appendItem(*wp3);
 	w -> addPost("This is the fifth post", "Happy");
+	cout << (w -> toString());
 	ListNode<WallPost> * l = w -> posts -> getHead();
-	while(l)
-	{
-		((WallPost)l -> getData()).printPost();
-		l = l -> getNext();
-	}
-
+	// while(l -> getNext())
+	// {
+	// 	((WallPost)(l -> getData())).printPost();
+	// 	l = l -> getNext();
+	// }
 	UserNetwork * un = new UserNetwork();
 	User u = User("vpatel", "poop", "Vivek Patel", "Glendale");
 	un -> addUser(u);

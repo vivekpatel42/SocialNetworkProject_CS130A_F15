@@ -49,10 +49,16 @@ string Wall::toString()
 	l = posts -> getHead();
 	while (l -> getNext())
 	{
+		result.append("post\n");
 		result.append(((WallPost)(l -> getData())).printPost());
 		result.append("\n");
+		result.append("endpost\n");
+		l = l -> getNext();
 	}
+	result.append("post\n");
 	result.append(((WallPost)(l -> getData())).printPost());
+	result.append("endpost\n");
+	return result;
 }
 
 void Wall::parseString(string input)

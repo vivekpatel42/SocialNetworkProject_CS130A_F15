@@ -54,10 +54,8 @@ void WallPost::setMood(string _mood)
 
 string WallPost::printPost()
 {
-	struct tm * timeInfo;
-	timeInfo = localtime(&postTime);
-	string result = post + "\t" + asctime(timeInfo) + "\t" + mood + "\t";
-	cout << result;
+	string result = "";
+	result += "\t" +  post + "\n" + "\t" + asctime(localtime(&postTime)) + "\t" +  mood + "\n";
 	return result;
 }
 

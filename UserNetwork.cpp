@@ -62,14 +62,22 @@ void UserNetwork::writeUserList()
 	ListNode<User> * l = userList -> getHead();
 	while (l)
 	{
-		string userInfo;
-		userInfo.append(((User)(l -> getData())).getUsername() + "\n"); 
-		userInfo.append(((User)(l -> getData())).getPassword() + "\n"); 
-		userInfo.append(((User)(l -> getData())).getFullName() + "\n");
-		userInfo.append(((User)(l -> getData())).getCity() + "\n");
-		userInfo.append( + "\n");
-		file << userInfo;
+		string userInfo = (((User)(l -> getData())).getUserInfo());
+		file << "user\n" << userInfo << "enduser";
+		Wall w = (((User)(l -> getData())).getWall());
+		file << w.toString();
+	}
+}
 
+void UserNetwork::readUserList(ifstream infile)
+{
+	string line;
+	while (getline(infile, line))
+	{
+	    // istringstream iss(line);
+	    // string userInfo;
+	    // string posts;
+	    // if (!(iss >> a >> b)) { break; } // error
 	}
 }
 

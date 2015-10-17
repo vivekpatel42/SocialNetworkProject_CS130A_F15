@@ -13,7 +13,7 @@ class DoubleLinkedList {
 			head = new ListNode<T>();
 			head -> setPrev(NULL);
 			head -> setNext(NULL);
-			count = 1;
+			count = 0;
 		}
 
 		// Creates a new DoubleLinkedList object with the specified HEAD node. CANNOT have empty list.
@@ -40,6 +40,15 @@ class DoubleLinkedList {
 
 		void appendItem(const T & value)
 		{
+			if (count == 0)
+			{
+				ListNode<T> *l = new ListNode<T>(value);
+				head = l;
+				head -> setNext(NULL);
+				head -> setPrev(NULL);
+				count++;
+				return;
+			}
 			ListNode<T> * l = new ListNode<T>(value);
 			ListNode<T> * temp = head;
 			for (int i = 0; i < count - 1; i++)

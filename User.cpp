@@ -13,6 +13,15 @@ User::User(string _username)
 	username = _username;
 }
 
+User::User(string _username, string _password, string _fullName)
+{
+	userWall = Wall();
+	username = _username;
+	password = _password;
+	fullName = _fullName;
+	city = "";
+}
+
 User::User(string _username, string _password, string _fullName, string _city)
 {
 	userWall = Wall();
@@ -80,11 +89,16 @@ void User::deletePost(int i)
 string User::getUserInfo() const
 {
 	string result;
-	result.append(username + "\n");
-	result.append(password + "\n");
-	result.append(fullName + "\n");
-	result.append(city + "\n");
+	result.append("\t" + username + "\n");
+	result.append("\t" + password + "\n");
+	result.append("\t" + fullName + "\n");
+	result.append("\t" + city + "\n");
 	return result;
+}
+
+void User::parseUserInfo(string userInfo)
+{
+
 }
 
 User::~User()

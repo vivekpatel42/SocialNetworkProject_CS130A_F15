@@ -12,9 +12,13 @@ using namespace std;
 
 int main()
 {
+	User currentUser;
 	bool running = true;
 	while (running)
 	{
+		bool program = false;
+		ifstream infile;
+		infile.open("userList.txt");
 		char input;
 		UserNetwork * un = new UserNetwork();
 		cout << "Please enter a letter to select what you would like to do: " << endl;
@@ -28,36 +32,75 @@ int main()
 		}
 		else if (input == 'n')
 		{
-			string newUsername;
-			cout << "Please enter your preferred username." << endl;
-			cin >> newUsername;
+			bool running2 = true;
+			while(running2)
+			{
+				string newUsername;
+				cout << "Please enter your preferred username: " << endl;
+				cin >> newUsername;
+				if (un -> contains(newUsername))
+				{
+					cout << "Username already exists in the network." << endl << "Please enter a unique username.";
+				} 
+				else 
+				{
+					string newPassword;
+					string newFullName;
+					cout << "Please enter a password for the new account." << endl;
+					cin >> newPassword;
+					cout << "Please enter your name." << endl;
+					cin >> newFullName;
+					User u1 = User(newUsername, newPassword, newFullName);
+					un -> addUser(u1);
+					currentUser = u1;
+					program = true;
+					running2 = false;
+				}
+			}
 		}
 		else if (input == 'l')
 		{
 			string usernameInput;
+			string passwordInput;
 			cout << "Username: " << endl;
 			cin >> usernameInput;
 			if (un -> contains(usernameInput))
 			{
-				bool running2 = true;
-				while(running2)
+				User u2 = un -> getUser(usernameInput);
+				cout << "Password: " << endl;
+				cin >> passwordInput;
+				if (passwordInput.compare(u2.getPassword()) == 0) 
 				{
-					char userInput;
-					cout << "Logged in as " << usernameInput << endl;
-					cout << "What would you like to do next?" << endl;
-					cout << "Display wall. (d)" << endl;
-					cin >> userInput;
-					if (userInput != 'd')
-					{
-						cout << "Invalid input, please try again.\n";
-					}
-					else 
-					{
-						User u = un -> getUser(usernameInput);
-						u.getWall().toString();
-					}
+					currentUser = u2;
 				}
+				else 
+				{
+					cout << "The password you have entered is incorrect. Exiting...";
+				}
+				program = true;
 			}
+		}
+		else if (program)
+		{
+			char userInput;
+			cout << "Logged in as " << currentUser.getUsername() << endl;
+			cout << "What would you like to do next?" << endl;
+			cout << "Display wall. (d)" << endl;
+			cout << "Exit the program. (x)" << endl;
+			cin >> userInput;
+			if (userInput != 'd' && userInput != 'x')
+			{
+				cout << "Invalid input, please try again.\n";
+			}
+			else if (userInput == 'd')
+			{
+				currentUser.getWall().toString();
+			}
+			else if (userInput == 'x')
+			{
+				running = false;
+			}
+
 		}
 		else if (input == 'x')
 		{

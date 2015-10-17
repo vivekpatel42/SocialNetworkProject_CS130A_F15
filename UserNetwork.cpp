@@ -49,7 +49,7 @@ User UserNetwork::getUser(string username)
 	{
 		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
 		{
-			return ((User)(l -> getData));			
+			return ((User)(l -> getData()));			
 		}
 		l = l -> getNext();
 	}
@@ -69,6 +69,7 @@ void UserNetwork::writeUserList()
 		userInfo.append(((User)(l -> getData())).getCity() + "\n");
 		userInfo.append( + "\n");
 		file << userInfo;
+
 	}
 }
 

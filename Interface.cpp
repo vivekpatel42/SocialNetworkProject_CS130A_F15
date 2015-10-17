@@ -49,7 +49,7 @@ int main()
 					cin >> userInput;
 					if (userInput != 'd')
 					{
-						cout << "Invalid input, please try again.\n"
+						cout << "Invalid input, please try again.\n";
 					}
 					else 
 					{

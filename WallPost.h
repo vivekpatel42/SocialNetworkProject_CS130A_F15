@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include "ListNode.h"
+#include "DoubleLinkedList.h"
 
 using namespace std;
 
@@ -13,6 +15,7 @@ class WallPost {
 		WallPost();
 		explicit WallPost(string _post);
 		explicit WallPost(string _post, string _mood);
+		explicit WallPost(string _post, time_t _postTime, string _mood);
 		string getPost() const;
 		void setPost(string _post);
 		time_t getTime() const;

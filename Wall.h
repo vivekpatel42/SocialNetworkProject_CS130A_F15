@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "ListNode.h"
+#include "DoubleLinkedList.h"
+#include "WallPost.h"
 
 using namespace std;
 
@@ -10,12 +13,12 @@ class Wall {
 
 	public:
 		Wall();
-		Wall(DoubleLinkedList<WallPost> * _posts);
 		void addPost(string post);
 		void addPost(string post, string mood);
 		void removePost(int i);
 		string getUsername() const;
 		void setUsername(string _username);
+		int getCount() const;
 		string toString();
 		void parseString(string input);
 		~Wall();
@@ -25,6 +28,7 @@ class Wall {
 
 	private:
 		string username;
+		int count;
 };
 
 #endif

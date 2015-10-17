@@ -11,7 +11,7 @@ class ListNode {
 
 		ListNode()
 		{
-			data = T { };
+			data = T();
 			next = NULL;
 			prev = NULL;
 		}
@@ -19,7 +19,7 @@ class ListNode {
 		// Creates a new ListNode object with the specified data value T.
 		explicit ListNode(const T & value) 
 		{ 
-			data = value; 
+			data = T(value); 
 			next = NULL; 
 			prev = NULL; 
 		} 
@@ -30,7 +30,7 @@ class ListNode {
 			delete prev;
 		}
 
-		const T & getData() const 
+		const T & getData()
 		{ 
 			return data; 
 		} // Sets the data value T for the invoking ListNode object.
@@ -60,10 +60,10 @@ class ListNode {
 			prev = l; 
 		} // Sets the ListNode object referred to by the PREV pointer.
 		
-		void printNode() 
-		{ 
-			cout << data << endl;
-		}
+		// void printNode() 
+		// { 
+		// 	cout << data << endl;
+		// }
 
 	private:
 		T data;

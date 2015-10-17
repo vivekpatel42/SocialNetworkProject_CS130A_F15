@@ -1,5 +1,7 @@
 #include "UserNetwork.h"
 
+using namespace std;
+
 UserNetwork::UserNetwork()
 {
 	userList = new DoubleLinkedList<User>();
@@ -13,17 +15,44 @@ void UserNetwork::addUser(User u)
 void UserNetwork::deleteUser(string username)
 {
 	ListNode<User> * l = userList -> getHead();
-	n = 0;
+	int n = 0;
 	while (l)
 	{
-		if (username.compare(l -> getData() -> getUsername()) == 0)
+		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
 		{
 			userList -> removeItem(n);
 			return;
 		}
 		l = l -> getNext();
-		count++;			
+		n++;			
 	}	
+}
+
+bool UserNetwork::contains(string username)
+{
+	ListNode<User> * l = userList -> getHead();
+	while(l)
+	{
+		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+		{
+			return true;
+		}
+		l = l -> getNext();
+	}
+	return false;
+}
+
+User UserNetwork::getUser(string username)
+{
+	ListNode<User> * l = userList -> getHead();
+	while(l)
+	{
+		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+		{
+			return ((User)(l -> getData));			
+		}
+		l = l -> getNext();
+	}
 }
 
 void UserNetwork::writeUserList()
@@ -34,12 +63,12 @@ void UserNetwork::writeUserList()
 	while (l)
 	{
 		string userInfo;
-		userInfo.append(l -> getData() -> getUsername() + "\n" + l -> getData() -> getCity());
-		userInfo.append(l -> getData() -> getFullName() + "\n");
+		userInfo.append(((User)(l -> getData())).getUsername() + "\n"); 
+		userInfo.append(((User)(l -> getData())).getPassword() + "\n"); 
+		userInfo.append(((User)(l -> getData())).getFullName() + "\n");
+		userInfo.append(((User)(l -> getData())).getCity() + "\n");
 		userInfo.append( + "\n");
 		file << userInfo;
-		string wallPosts;
-		wallPosts.append(((l -> getData() -> getWall()).posts) ->)
 	}
 }
 

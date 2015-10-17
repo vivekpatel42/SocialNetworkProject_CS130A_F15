@@ -37,12 +37,17 @@ void User::setUsername(string _username)
 	username = _username;
 }
 
+string User::getPassword() const
+{
+	return password;
+}
+
 string User::getFullName() const
 {
 	return fullName;
 }
 
-void User::setFullName(string _fullName) const
+void User::setFullName(string _fullName)
 {
 	fullName = _fullName;
 }

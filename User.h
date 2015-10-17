@@ -1,6 +1,12 @@
 #ifndef USER_H
 #define USER_H
 
+#include <iostream>
+#include <string>
+#include "ListNode.h"
+#include "DoubleLinkedList.h"
+#include "Wall.h"
+
 using namespace std;
 
 class User {
@@ -12,6 +18,7 @@ class User {
 		Wall getWall() const;
 		string getUsername() const;
 		void setUsername(string _username);
+		string getPassword() const;
 		string getFullName() const;
 		void setFullName(string _fullName);
 		string getCity() const;

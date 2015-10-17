@@ -17,6 +17,11 @@ WallPost::WallPost(string _post, string _mood) : post { _post }, mood { _mood }
 	postTime = time(0);
 }
 
+WallPost::WallPost(string _post, time_t _postTime, string _mood) : post { _post }, mood { _mood }
+{
+	postTime = _postTime;
+}
+
 string WallPost::getPost() const
 {
 	return post;
@@ -49,7 +54,9 @@ void WallPost::setMood(string _mood)
 
 string WallPost::printPost()
 {
-	string result = post + "\n" + ctime(&postTime) + mood + "\n";
+	struct tm * timeInfo;
+	timeInfo = localtime(&postTime);
+	string result = post + "\t" + asctime(timeInfo) + "\t" + mood + "\t";
 	cout << result;
 	return result;
 }

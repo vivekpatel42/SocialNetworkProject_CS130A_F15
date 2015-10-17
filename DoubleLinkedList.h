@@ -8,6 +8,14 @@ class DoubleLinkedList {
 	
 	public:
 
+		DoubleLinkedList()
+		{
+			head = new ListNode<T>();
+			head -> setPrev(NULL);
+			head -> setNext(NULL);
+			count = 1;
+		}
+
 		// Creates a new DoubleLinkedList object with the specified HEAD node. CANNOT have empty list.
 		explicit DoubleLinkedList(ListNode<T> * value)
 		{
@@ -23,12 +31,17 @@ class DoubleLinkedList {
 			return head;
 		} 
 
+		int getCount() const
+		{
+			return count;
+		}
+
 		// Appends ListNode to the end of the list.
 
 		void appendItem(const T & value)
 		{
 			ListNode<T> * l = new ListNode<T>(value);
-			ListNode<T> * temp = this -> head;
+			ListNode<T> * temp = head;
 			for (int i = 0; i < count - 1; i++)
 			{
 				temp = temp -> getNext();
@@ -38,6 +51,42 @@ class DoubleLinkedList {
 			l -> setNext(NULL);
 			count++;
 		} 
+
+		void removeItem(int n) 
+		{
+			if (n > count) 
+			{
+				return;
+			}
+			else if (n == count) {
+				ListNode<T> * l = head;
+				for (int i = 0; i < count - 1; i++)
+				{
+					l = l -> getNext();
+				}
+				delete l -> getNext();
+				l -> setNext(NULL);
+				count--;
+			}
+			else if (n == 0)
+			{
+				ListNode<T> * l = head;
+				head = l -> getNext();
+				head -> setPrev(NULL);
+				count--;
+			}
+			else 
+			{
+				ListNode<T> * l = head;
+				for (int i = 0; i < n - 1; i++)
+				{
+					l = l -> getNext();
+				}
+				l -> getPrev() -> setNext(l -> getNext());
+				l -> getNext() -> setPrev(l -> getPrev());
+				count--;
+			}
+		}
 
 		void printList()
 		{

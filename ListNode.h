@@ -9,13 +9,26 @@ template <class T>
 class ListNode {
 	public:
 
+		ListNode()
+		{
+			data = T { };
+			next = NULL;
+			prev = NULL;
+		}
+
 		// Creates a new ListNode object with the specified data value T.
 		explicit ListNode(const T & value) 
 		{ 
 			data = value; 
-			this -> next = NULL; 
-			this -> prev = NULL; 
+			next = NULL; 
+			prev = NULL; 
 		} 
+
+		~ListNode()
+		{
+			delete next;
+			delete prev;
+		}
 
 		const T & getData() const 
 		{ 

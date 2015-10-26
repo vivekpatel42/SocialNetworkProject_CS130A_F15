@@ -68,12 +68,8 @@ class DoubleLinkedList {
 				return;
 			}
 			else if (n == count) {
-				ListNode<T> * l = head;
-				for (int i = 0; i < count - 1; i++)
-				{
-					l = l -> getNext();
-				}
-				delete l -> getNext();
+				ListNode<T> * l = tail -> getPrev();
+				delete tail;
 				l -> setNext(NULL);
 				count--;
 			}
@@ -109,11 +105,7 @@ class DoubleLinkedList {
 
 		void clearList()
 		{
-			ListNode<T> * l = head;
-			while (l -> getNext())
-			{
-				l = l -> getNext();
-			}  
+			ListNode<T> * l = tail;  
 			while (l != head)
 			{
 				ListNode<T> * temp = l;
@@ -134,6 +126,7 @@ class DoubleLinkedList {
 
 	private:
 		ListNode<T> * head;
+		ListNode<T> * tail;
 		int count;
 };
 

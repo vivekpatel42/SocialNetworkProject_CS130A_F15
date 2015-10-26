@@ -20,7 +20,7 @@ class Wall {
 		void setUsername(string _username);
 		int getCount() const;
 		string toString();
-		void parseString(string input);
+		void parseWall(string input);
 		~Wall();
 
 		// Linked list of wall posts on this wall.

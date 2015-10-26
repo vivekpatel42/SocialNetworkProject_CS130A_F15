@@ -47,23 +47,20 @@ string Wall::toString()
 	string result;
 	ListNode<WallPost> * l = new ListNode<WallPost>();
 	l = posts -> getHead();
-	while (l -> getNext())
+	while (l)
 	{
-		result.append("post\n");
 		result.append(((WallPost)(l -> getData())).printPost());
-		result.append("\n");
-		result.append("endpost\n");
 		l = l -> getNext();
 	}
-	result.append("post\n");
-	result.append(((WallPost)(l -> getData())).printPost());
-	result.append("endpost\n");
 	return result;
 }
 
-void Wall::parseString(string input)
+void Wall::parseWall(string input)
 {
 	posts -> clearList();
+	string post, mood;
+	time_t postTime;
+			
 }
 
 Wall::~Wall()

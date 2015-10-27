@@ -88,9 +88,18 @@ void User::deletePost(int i)
 
 string User::getUserInfo() const
 {
-	string result = "user\n" + username + "\n" + password + "\n" 
-					+ fullName + "\n" + city + "\nenduser\n";
+	string result = username + "\n" + password + "\n" 
+					+ fullName + "\n" + city + "\n";
+
 	return result;
+}
+
+string User::toString()
+{
+	string result = "user\n";
+	result += getUserInfo();
+	result += userWall.toString();
+	result += "enduser\n";
 }
 
 void User::parseUserInfo(string userInfo)

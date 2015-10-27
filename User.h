@@ -28,6 +28,7 @@ class User {
 		void addPost(string post, string mood);
 		void deletePost(int i);
 		string getUserInfo() const;
+		string toString();
 		void parseUserInfo(string userInfo);
 		~User();
 	private:

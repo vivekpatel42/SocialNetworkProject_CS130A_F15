@@ -22,7 +22,7 @@ class WallPost {
 		void setTime(time_t _postTime);
 		string getMood() const;
 		void setMood(string _mood);
-		string printPost();
+		string toString();
 		~WallPost();
 	private:
 		string post;

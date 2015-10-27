@@ -49,7 +49,7 @@ string Wall::toString()
 	l = posts -> getHead();
 	while (l)
 	{
-		result.append(((WallPost)(l -> getData())).printPost());
+		result.append(((WallPost)(l -> getData())).toString());
 		l = l -> getNext();
 	}
 	result += "endwall\n";

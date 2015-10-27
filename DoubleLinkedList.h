@@ -11,9 +11,12 @@ class DoubleLinkedList {
 		DoubleLinkedList()
 		{
 			head = new ListNode<T>();
+			tail = new ListNode<T>();
 			head -> setPrev(NULL);
-			head -> setNext(NULL);
-			count = 0;
+			head -> setNext(tail);
+			tail -> setPrev(head);
+			tail -> setNext(NULL);
+			count = 0; // Fix this
 		}
 
 		// Creates a new DoubleLinkedList object with the specified HEAD node. CANNOT have empty list.
@@ -31,6 +34,12 @@ class DoubleLinkedList {
 			return head;
 		} 
 
+		//Gets the TAIL node.
+		ListNode<T> * getTail() const
+		{
+			return tail;
+		}
+
 		int getCount() const
 		{
 			return count;
@@ -42,8 +51,7 @@ class DoubleLinkedList {
 		{
 			if (count == 0)
 			{
-				ListNode<T> *l = new ListNode<T>(value);
-				head = l;
+				head = new ListNode<T>(value);
 				head -> setNext(NULL);
 				head -> setPrev(NULL);
 				count++;

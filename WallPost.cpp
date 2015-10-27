@@ -52,7 +52,7 @@ void WallPost::setMood(string _mood)
 	mood = _mood;
 }
 
-string WallPost::printPost()
+string WallPost::toString()
 {
 	string result = "post\n";
 	result += post + "\n" + asctime(localtime(&postTime)) + mood + "\nendpost\n";

@@ -44,7 +44,7 @@ int Wall::getCount() const
 
 string Wall::toString()
 {
-	string result;
+	string result = "wall\n";
 	ListNode<WallPost> * l = new ListNode<WallPost>();
 	l = posts -> getHead();
 	while (l)
@@ -52,6 +52,7 @@ string Wall::toString()
 		result.append(((WallPost)(l -> getData())).printPost());
 		l = l -> getNext();
 	}
+	result += "endwall\n";
 	return result;
 }
 
@@ -60,7 +61,6 @@ void Wall::parseWall(string input)
 	posts -> clearList();
 	string post, mood;
 	time_t postTime;
-			
 }
 
 Wall::~Wall()

@@ -54,8 +54,8 @@ void WallPost::setMood(string _mood)
 
 string WallPost::printPost()
 {
-	string result = "\tpost\n";
-	result += "\t\t" +  post + "\n" + "\t\t" + asctime(localtime(&postTime)) + "\t\t" +  mood + "\n\tendpost\n";
+	string result = "post\n";
+	result += post + "\n" + asctime(localtime(&postTime)) + mood + "\nendpost\n";
 	return result;
 }
 

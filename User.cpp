@@ -88,8 +88,8 @@ void User::deletePost(int i)
 
 string User::getUserInfo() const
 {
-	string result = "user\n\t" + username + "\n" + "\t" + password + "\n" + 
-					"\t" + fullName + "\n" + "\t" + city + "\nenduser\n";
+	string result = "user\n" + username + "\n" + password + "\n" 
+					+ fullName + "\n" + city + "\nenduser\n";
 	return result;
 }
 

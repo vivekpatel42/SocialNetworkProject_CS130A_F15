@@ -55,15 +55,12 @@ class ListNode {
 			return prev; 
 		} // Gets the ListNode object referred to by the PREV pointer.
 		
+		// Sets the ListNode object referred to by the PREV pointer.
 		void setPrev(ListNode<T> * l) 
 		{ 
 			prev = l; 
-		} // Sets the ListNode object referred to by the PREV pointer.
+		} 
 		
-		// void printNode() 
-		// { 
-		// 	cout << data << endl;
-		// }
 
 	private:
 		T data;

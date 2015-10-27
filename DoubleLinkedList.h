@@ -16,7 +16,7 @@ class DoubleLinkedList {
 			head -> setNext(tail);
 			tail -> setPrev(head);
 			tail -> setNext(NULL);
-			count = 0; // Fix this
+			count = 0;
 		}
 
 		// Creates a new DoubleLinkedList object with the specified HEAD node. CANNOT have empty list.
@@ -51,47 +51,68 @@ class DoubleLinkedList {
 		{
 			if (count == 0)
 			{
-				head = new ListNode<T>(value);
-				head -> setNext(NULL);
+				head -> setData(value);
+				head -> setNext(tail);
 				head -> setPrev(NULL);
+				tail -> setPrev(head);
+				tail -> setNext(NULL);
 				count++;
 				return;
 			}
-			ListNode<T> * l = new ListNode<T>(value);
-			ListNode<T> * temp = head;
-			for (int i = 0; i < count - 1; i++)
+			else if (count == 1)
 			{
-				temp = temp -> getNext();
+				tail -> setData(value);
+				count++;
+				return;
 			}
-			l -> setPrev(temp);
-			temp -> setNext(l);
-			l -> setNext(NULL);
-			count++;
+			else 
+			{
+				ListNode<T> * temp = new ListNode<T>(value);
+				tail -> setNext(temp);
+				temp -> setPrev(tail);
+				tail = temp;
+				tail -> setNext(NULL);
+			}
 		} 
 
+		// Removes the nth ListNode
 		void removeItem(int n) 
 		{
-			if (n > count) 
+			if (!head && !tail)
+			{
+				return;
+			}
+			if (n > count || n == 0) 
 			{
 				return;
 			}
 			else if (n == count) {
+				if (!tail)
+				{
+					return;
+				}
 				ListNode<T> * l = tail -> getPrev();
 				delete tail;
-				l -> setNext(NULL);
+				tail = l;
+				tail -> setNext(NULL);
 				count--;
 			}
-			else if (n == 0)
+			else if (n == 1)
 			{
-				ListNode<T> * l = head;
-				head = l -> getNext();
+				if (!head)
+				{
+					return;
+				}
+				ListNode<T> * l = head -> getNext();
+				delete head;
+				head = l;
 				head -> setPrev(NULL);
 				count--;
 			}
 			else 
 			{
 				ListNode<T> * l = head;
-				for (int i = 0; i < n - 1; i++)
+				for (int i = 1; i < n; i++)
 				{
 					l = l -> getNext();
 				}

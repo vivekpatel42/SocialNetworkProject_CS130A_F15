@@ -5,12 +5,19 @@ using namespace std;
 User::User()
 {
 	userWall = Wall();
+	username = "";
+	password = "";
+	fullName = "";
+	city = "";
 }
 
 User::User(string _username)
 {
 	userWall = Wall();
 	username = _username;
+	password = "";
+	fullName = "";
+	city = "";	
 }
 
 User::User(string _username, string _password, string _fullName)
@@ -36,6 +43,11 @@ Wall User::getWall() const
 	return userWall;
 }
 
+void User::setWall(Wall w)
+{
+	userWall = w;
+}
+
 string User::getUsername() const
 {
 	return username;
@@ -49,6 +61,11 @@ void User::setUsername(string _username)
 string User::getPassword() const
 {
 	return password;
+}
+
+void User::setPassword(string _password)
+{
+	password = _password;
 }
 
 string User::getFullName() const
@@ -96,15 +113,22 @@ string User::getUserInfo() const
 
 string User::toString()
 {
-	string result = "user\n";
-	result += getUserInfo();
+	string result = (getUserInfo());
 	result += userWall.toString();
-	result += "enduser\n";
+	result += "----------\n";
+	return result;
 }
 
 void User::parseUserInfo(string userInfo)
 {
-
+	const char * token = strtok(userInfo, "\n");
+	username = token;
+	token = strtok(NULL, "\n");
+	password = token;
+	token = strtok(NULL, "\n");
+	fullName = token;
+	token = strtok(NULL, "\n");
+	city = token;
 }
 
 User::~User()

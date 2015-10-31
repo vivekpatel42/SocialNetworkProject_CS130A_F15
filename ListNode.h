@@ -26,8 +26,6 @@ class ListNode {
 
 		~ListNode()
 		{
-			delete next;
-			delete prev;
 		}
 
 		const T & getData()

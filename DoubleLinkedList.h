@@ -24,7 +24,9 @@ class DoubleLinkedList {
 		{
 			head = value;
 			head -> setPrev(NULL);
-			head -> setNext(NULL);
+			head -> setNext(tail);
+			tail -> setPrev(head);
+			tail -> setNext(NULL);
 			count = 1;
 		} 
 		
@@ -134,13 +136,16 @@ class DoubleLinkedList {
 
 		void clearList()
 		{
-			ListNode<T> * l = tail;  
-			while (l != head)
+			ListNode<T> * l = head;  
+			while (l)
 			{
-				ListNode<T> * temp = l;
-				l = l -> getPrev();
-				delete temp;
+				head = head -> getNext();
+				delete l;
+				l = head;
 			}
+			head = NULL;
+			tail = NULL;
+			count = 0;
 		}
 
 		~DoubleLinkedList() 

@@ -57,27 +57,52 @@ User UserNetwork::getUser(string username)
 
 void UserNetwork::writeUserList()
 {
-	ofstream file;
-	file.open("userList.txt");
+	ofstream outfile;
+	outfile.open("userList.txt");
 	ListNode<User> * l = userList -> getHead();
 	while (l)
 	{
-		string userInfo = (((User)(l -> getData())).getUserInfo());
-		file << "user\n" << userInfo << "enduser";
-		Wall w = (((User)(l -> getData())).getWall());
-		file << w.toString();
+		outfile << ((User)(l -> getData())).toString();
+		l = l -> getNext();
 	}
+	outfile.close();
 }
 
-void UserNetwork::readUserList(ifstream infile)
+void UserNetwork::readUserList()
 {
-	string line;
-	while (getline(infile, line))
+	userList -> clearList();
+	ifstream infile;
+	infile.open("userList.txt");
+	char buf[MAX_CHARS_PER_LINE];
+	const char * token1; 
+	const char * token2;
+	User tempUser = User();
+	Wall tempWall = Wall();
+	string s, wholeFile;
+	const string temp;
+	getline(infile, s);
+	while (infile)
 	{
-	    // istringstream iss(line);
-	    // string userInfo;
-	    // string posts;
-	    // if (!(iss >> a >> b)) { break; } // error
+		wholeFile += s + "\n";
+		getline(infile, s);			
+	}
+	token1 = strtok(s, END_USER_DELIM);
+	while (token1)
+	{
+		int count = 0;
+		token2 = strtok(token1, "\n");
+		temp += token2 + "\n";
+		for(int i = 0; i < 3; i++)
+		{
+			token2 = strtok(NULL, "\n");
+			temp += token2 + "\n";
+		}
+		tempUser.parseUserInfo(temp);
+		temp = "";
+		while(token2)
+		{
+			
+		}
 	}
 }
 

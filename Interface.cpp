@@ -13,14 +13,13 @@ using namespace std;
 int main()
 {
 	User currentUser;
+	UserNetwork * un = new UserNetwork();
+	un -> readUserList();
 	bool running = true;
 	while (running)
 	{
 		bool program = false;
-		ifstream infile;
-		infile.open("userList.txt");
 		char input;
-		UserNetwork * un = new UserNetwork();
 		cout << "Please enter a letter to select what you would like to do: " << endl;
 		cout << "Create a new user. (n)" << endl;
 		cout << "Log in as a user. (l)" << endl;
@@ -107,7 +106,6 @@ int main()
 			running = false;
 		}
 	}
-	
-
+	un -> writeUserList();
 	return 0;
 };

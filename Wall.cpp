@@ -5,6 +5,7 @@ using namespace std;
 Wall::Wall()
 {
 	posts = new DoubleLinkedList<WallPost>();
+	count = 0;
 }
 
 void Wall::addPost(string post)
@@ -16,8 +17,8 @@ void Wall::addPost(string post)
 
 void Wall::addPost(string post, string mood)
 {
-	WallPost wp = WallPost(post, mood);
-	posts -> appendItem(wp);
+	WallPost * wp = new WallPost(post, mood);
+	posts -> appendItem(*wp);
 	count++;
 }
 
@@ -44,15 +45,14 @@ int Wall::getCount() const
 
 string Wall::toString()
 {
-	string result = "wall\n";
+	string result = "";
 	ListNode<WallPost> * l = new ListNode<WallPost>();
 	l = posts -> getHead();
-	while (l)
+	for (int i = 0; i < count; i++)
 	{
 		result.append(((WallPost)(l -> getData())).toString());
 		l = l -> getNext();
 	}
-	result += "endwall\n";
 	return result;
 }
 

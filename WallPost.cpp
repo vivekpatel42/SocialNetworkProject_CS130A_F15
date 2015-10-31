@@ -4,12 +4,15 @@ using namespace std;
 
 WallPost::WallPost() 
 {
+	post = "";
 	postTime = time(0);
+	mood = "";
 }
 
 WallPost::WallPost(string _post) : post { _post }
 {
 	postTime = time(0);
+	mood = "";
 }
 
 WallPost::WallPost(string _post, string _mood) : post { _post }, mood { _mood }
@@ -54,8 +57,7 @@ void WallPost::setMood(string _mood)
 
 string WallPost::toString()
 {
-	string result = "post\n";
-	result += post + "\n" + asctime(localtime(&postTime)) + mood + "\nendpost\n";
+	string result = post + "\n" + asctime(localtime(&postTime)) + mood + "\n";
 	return result;
 }
 

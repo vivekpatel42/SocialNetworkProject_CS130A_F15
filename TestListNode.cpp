@@ -34,21 +34,22 @@ int main()
 	// 	l = l -> getNext();
 	// }
 	UserNetwork * un = new UserNetwork();
-	User u = User("vpatel", "poop", "Vivek Patel", "Glendale");
-	u.addPost("This is the first post", "Happy");
-	u.addPost("This is the second post", "Happy");
+	//un -> readUserList();
+	User u = User("vpatel", "poop", "Vivek Patel");
+	u.addPost("This is Vivek's first post", "Facehole");
 	un -> addUser(u);
 	User u2 = User("xd", "poop", "Xochitl Duarte", "Goleta");
-	u2.addPost("This is the third post", "Happy");
-	u2.addPost("This is the fourth post", "Happy");
-	u2.addPost("This is the fifth post", "Happy");
+	u2.addPost("This is the first post", "Happy");
+	u2.addPost("This is the second post", "Moderate");
 	un -> addUser(u2);
 	ListNode<User> * l1 = un -> userList -> getHead();
 	while(l1)
 	{
-		cout << ((User)l1->getData()).toString();
+		cout << ((User)(l1 -> getData())).toString();
 		l1 = l1 -> getNext();
 	}
+
+	un -> writeUserList();
 
 	return 0;
 }

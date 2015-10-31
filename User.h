@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include "ListNode.h"
 #include "DoubleLinkedList.h"
 #include "Wall.h"
@@ -17,9 +18,11 @@ class User {
 		explicit User(string _username, string _password, string _fullName);
 		explicit User(string _username, string _password, string _fullName, string _city);
 		Wall getWall() const;
+		void setWall(Wall w);
 		string getUsername() const;
 		void setUsername(string _username);
 		string getPassword() const;
+		void setPassword(string _password);
 		string getFullName() const;
 		void setFullName(string _fullName);
 		string getCity() const;

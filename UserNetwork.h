@@ -2,8 +2,8 @@
 #define USERNETWORK_H
 
 #include <string>
-#include <cstring>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include "ListNode.h"
 #include "DoubleLinkedList.h"
@@ -25,9 +25,6 @@ class UserNetwork {
 		DoubleLinkedList<User> * userList;
 	private:
 		const string END_USER_DELIM = "----------";
-		const int MAX_CHARS_PER_LINE = 512;
-		const int MAX_TOKENS_1 = 50;
-		const int MAX_TOKENS_2 = 512;
 };
 
 

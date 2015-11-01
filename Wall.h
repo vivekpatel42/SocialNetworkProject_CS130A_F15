@@ -2,6 +2,7 @@
 #define WALL_H
 
 #include <string>
+#include <cstring>
 #include <iostream>
 #include "ListNode.h"
 #include "DoubleLinkedList.h"
@@ -13,6 +14,7 @@ class Wall {
 
 	public:
 		Wall();
+		void addPost(WallPost post);
 		void addPost(string post);
 		void addPost(string post, string mood);
 		void removePost(int i);

@@ -73,36 +73,36 @@ void UserNetwork::readUserList()
 	userList -> clearList();
 	ifstream infile;
 	infile.open("userList.txt");
-	char buf[MAX_CHARS_PER_LINE];
-	const char * token1; 
-	const char * token2;
 	User tempUser = User();
 	Wall tempWall = Wall();
 	string s, wholeFile;
-	const string temp;
 	getline(infile, s);
 	while (infile)
 	{
 		wholeFile += s + "\n";
 		getline(infile, s);			
 	}
-	token1 = strtok(s, END_USER_DELIM);
-	while (token1)
+	string token, temp;
+	istringstream iss1(s);
+	while (getline(iss1, token, END_USER_DELIM))
 	{
+		temp = "";
 		int count = 0;
-		token2 = strtok(token1, "\n");
-		temp += token2 + "\n";
-		for(int i = 0; i < 3; i++)
+		istringstream iss2(token);
+		for (int i = 0; i < 4; i++)
 		{
-			token2 = strtok(NULL, "\n");
-			temp += token2 + "\n";
+			getline(iss2, temp, '\n');
+			temp += '\n';
 		}
 		tempUser.parseUserInfo(temp);
 		temp = "";
-		while(token2)
-		{
-			
+		while (getline(iss2, temp, '\n'))
+		{	
+			temp += '\n';
 		}
+		tempWall.parseWall(temp);
+		tempUser.setWall(tempWall);
+		addUser(tempUser);
 	}
 }
 

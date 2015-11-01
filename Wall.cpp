@@ -66,35 +66,29 @@ void Wall::parseWall(string input)
 	posts -> clearList();
 	string post, mood;
 	time_t postTime;
-	WallPost temp = WallPost();
 	int count = 1;
-	const char * token = strtok(input, "\n");
-	while (token)
+	string token;
+	struct tm _timeStruct;
+	istringstream iss(input);
+	while (getline(iss, token))
 	{
-		if (((count - 1) % 3) == 0 && count != 0)
-		{	
-			addPost(temp);
-			temp.setPost(token);
-			count++;	
-			break;
-		}
-		else if (((count - 1) % 3) == 0)
+		if (((count - 1) % 3) == 0)
 		{	
 			temp.setPost(token);
 			count++;	
-			break;
 		}
 		else if (((count - 1) % 3) == 1)
 		{
-			temp.setTime(token);
-			count++;
-			break;
+			// strptime(token.c_str(), "%a %b %d %T %Y", &_timeStruct);
+			// time_t _postTime = mktime(&_timeStruct);
+			// temp.setTime(_postTime);
+			// count++;
 		}
 		else if (((count - 1) % 3) == 2)
 		{
 			temp.setMood(token);
 			count++;
-			break;
+			addPost(temp);
 		}
 	}
 }

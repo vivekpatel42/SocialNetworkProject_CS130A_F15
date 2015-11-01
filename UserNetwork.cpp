@@ -58,7 +58,7 @@ User UserNetwork::getUser(string username)
 void UserNetwork::writeUserList()
 {
 	ofstream outfile;
-	outfile.open("userList.txt");
+	outfile.open("userList.txt", ofstream::out | ofstream::trunc);
 	ListNode<User> * l = userList -> getHead();
 	while (l)
 	{
@@ -71,39 +71,41 @@ void UserNetwork::writeUserList()
 void UserNetwork::readUserList()
 {
 	userList -> clearList();
+	userList = new DoubleLinkedList<User>();
 	ifstream infile;
 	infile.open("userList.txt");
 	User tempUser = User();
 	Wall tempWall = Wall();
 	string s, wholeFile;
-	getline(infile, s);
-	while (infile)
+	while (getline(infile, s))
 	{
-		wholeFile += s + "\n";
-		getline(infile, s);			
+		wholeFile += s + "\n";		
 	}
 	string token, temp;
-	istringstream iss1(s);
-	while (getline(iss1, token, END_USER_DELIM))
+	istringstream iss1(wholeFile);
+	while (getline(iss1, token, '\f'))
 	{
+		string input;
 		temp = "";
-		int count = 0;
 		istringstream iss2(token);
 		for (int i = 0; i < 4; i++)
 		{
-			getline(iss2, temp, '\n');
-			temp += '\n';
+			getline(iss2, temp);
+			input += temp + '\n';
 		}
-		tempUser.parseUserInfo(temp);
+		tempUser.parseUserInfo(input);
+		input = "";
 		temp = "";
-		while (getline(iss2, temp, '\n'))
+		while (!iss2.eof())
 		{	
-			temp += '\n';
+			getline(iss2, temp);
+			input += temp + '\n';
 		}
-		tempWall.parseWall(temp);
+		tempWall.parseWall(input);
 		tempUser.setWall(tempWall);
 		addUser(tempUser);
 	}
+	infile.close();
 }
 
 UserNetwork::~UserNetwork()

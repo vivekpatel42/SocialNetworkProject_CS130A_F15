@@ -124,16 +124,6 @@ class DoubleLinkedList {
 			}
 		}
 
-		// void printList()
-		// {
-		// 	ListNode<T> * l = head;
-		// 	while (l)
-		// 	{
-		// 		l -> printNode();
-		// 		l = l -> getNext();
-		// 	}
-		// }
-
 		void clearList()
 		{
 			ListNode<T> * l = head;  

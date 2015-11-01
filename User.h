@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cstring>
 #include "ListNode.h"

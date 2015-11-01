@@ -115,19 +115,21 @@ string User::toString()
 {
 	string result = (getUserInfo());
 	result += userWall.toString();
-	result += "----------\n";
+	result += '\f';
 	return result;
 }
 
 void User::parseUserInfo(string userInfo)
 {
-	const char * token = strtok(userInfo, "\n");
+	string token;
+	istringstream iss(userInfo);
+	getline(iss, token);
 	username = token;
-	token = strtok(NULL, "\n");
+	getline(iss, token);
 	password = token;
-	token = strtok(NULL, "\n");
+	getline(iss, token);
 	fullName = token;
-	token = strtok(NULL, "\n");
+	getline(iss, token);
 	city = token;
 }
 

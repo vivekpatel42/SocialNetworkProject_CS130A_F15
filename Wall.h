@@ -3,7 +3,9 @@
 
 #include <string>
 #include <cstring>
+#include <ctime>
 #include <iostream>
+#include <sstream>
 #include "ListNode.h"
 #include "DoubleLinkedList.h"
 #include "WallPost.h"

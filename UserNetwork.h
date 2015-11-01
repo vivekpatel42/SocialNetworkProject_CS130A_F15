@@ -23,8 +23,6 @@ class UserNetwork {
 		void readUserList();
 		~UserNetwork();
 		DoubleLinkedList<User> * userList;
-	private:
-		const string END_USER_DELIM = "----------";
 };
 
 

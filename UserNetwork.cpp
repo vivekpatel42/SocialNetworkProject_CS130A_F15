@@ -58,7 +58,7 @@ User UserNetwork::getUser(string username)
 void UserNetwork::writeUserList()
 {
 	ofstream outfile;
-	outfile.open("userList.txt");
+	outfile.open("userList.txt", ofstream::out | ofstream::trunc);
 	ListNode<User> * l = userList -> getHead();
 	while (l)
 	{

@@ -4,7 +4,7 @@ using namespace std;
 
 User::User()
 {
-	userWall = Wall();
+	userWall = new Wall();
 	username = "";
 	password = "";
 	fullName = "";
@@ -13,7 +13,7 @@ User::User()
 
 User::User(string _username)
 {
-	userWall = Wall();
+	userWall = new Wall();
 	username = _username;
 	password = "";
 	fullName = "";
@@ -22,7 +22,7 @@ User::User(string _username)
 
 User::User(string _username, string _password, string _fullName)
 {
-	userWall = Wall();
+	userWall = new Wall();
 	username = _username;
 	password = _password;
 	fullName = _fullName;
@@ -31,19 +31,19 @@ User::User(string _username, string _password, string _fullName)
 
 User::User(string _username, string _password, string _fullName, string _city)
 {
-	userWall = Wall();
+	userWall = new Wall();
 	username = _username;
 	password = _password;
 	fullName = _fullName;
 	city = _city;
 }
 
-Wall User::getWall() const
+Wall * User::getWall() const
 {
 	return userWall;
 }
 
-void User::setWall(Wall w)
+void User::setWall(Wall * w)
 {
 	userWall = w;
 }
@@ -90,17 +90,17 @@ void User::setCity(string _city)
 
 void User::addPost(string post)
 {
-	userWall.addPost(post);
+	userWall -> addPost(post);
 }
 
 void User::addPost(string post, string mood)
 {
-	userWall.addPost(post, mood);
+	userWall -> addPost(post, mood);
 }
 
 void User::deletePost(int i)
 {
-	userWall.removePost(i);
+	userWall -> removePost(i);
 }
 
 string User::getUserInfo() const
@@ -114,7 +114,7 @@ string User::getUserInfo() const
 string User::toString()
 {
 	string result = (getUserInfo());
-	result += userWall.toString();
+	result += userWall -> toString();
 	result += '\f';
 	return result;
 }

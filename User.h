@@ -18,8 +18,8 @@ class User {
 		explicit User(string _username);
 		explicit User(string _username, string _password, string _fullName);
 		explicit User(string _username, string _password, string _fullName, string _city);
-		Wall getWall() const;
-		void setWall(Wall w);
+		Wall * getWall() const;
+		void setWall(Wall * w);
 		string getUsername() const;
 		void setUsername(string _username);
 		string getPassword() const;
@@ -36,7 +36,7 @@ class User {
 		void parseUserInfo(string userInfo);
 		~User();
 	private:
-		Wall userWall;
+		Wall * userWall;
 		string username;
 		string password;
 		string fullName;

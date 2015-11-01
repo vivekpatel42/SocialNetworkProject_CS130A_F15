@@ -36,7 +36,7 @@ int main()
 	UserNetwork * un = new UserNetwork();
 	un -> readUserList();
 	
-	User u = User("vpatel", "poop", "Vivek Patel");
+	User u = User("vpatel", "poop", "Vivek Patel", "Glendale");
 	u.addPost("This is Vivek's first post", "Facehole");
 	un -> addUser(u);
 	User u2 = User("xd", "poop", "Xochitl Duarte", "Goleta");

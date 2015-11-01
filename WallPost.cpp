@@ -57,7 +57,7 @@ void WallPost::setMood(string _mood)
 
 string WallPost::toString()
 {
-	string result = post + "\n" + asctime(localtime(&postTime)) + mood + "\n";
+	string result = post + "\n" + ctime(&postTime) + mood + "\n";
 	return result;
 }
 

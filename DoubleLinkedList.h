@@ -74,6 +74,7 @@ class DoubleLinkedList {
 				temp -> setPrev(tail);
 				tail = temp;
 				tail -> setNext(NULL);
+				count++;
 			}
 		} 
 

@@ -22,7 +22,6 @@ class Wall {
 		void removePost(int i);
 		string getUsername() const;
 		void setUsername(string _username);
-		int getCount() const;
 		string toString();
 		void parseWall(string input);
 		~Wall();
@@ -32,7 +31,6 @@ class Wall {
 
 	private:
 		string username;
-		int count;
 };
 
 #endif

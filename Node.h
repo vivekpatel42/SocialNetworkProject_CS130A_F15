@@ -11,6 +11,12 @@ class Node
 			next = NULL;
 		}
 
+		explicit Node(const T & value)
+		{
+			data = value;
+			next = NULL;
+		}
+
 		~Node()
 		{
 		}
@@ -30,9 +36,9 @@ class Node
 			return next;
 		}
 
-		void setNext(Node<T> * l)
+		void setNext(Node<T> * n)
 		{
-			next = l;
+			next = n;
 		}
 
 	private:

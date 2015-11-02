@@ -3,7 +3,7 @@
 Vivek Patel
 Section: Tuesday 10 AM
 
-* NOTE: Class Array acts as "Bag" data structure.
+* NOTE: Class LinkedList acts as "Bag" data structure for the time being.
 
 * To compile, run the command "make -f makefile0" at the terminal.
 * To run, run the command "./social_network" at the terminal.

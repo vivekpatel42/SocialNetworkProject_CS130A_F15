@@ -6,8 +6,8 @@
 #include <ctime>
 #include <iostream>
 #include <sstream>
-#include "ListNode.h"
-#include "DoubleLinkedList.h"
+#include "Node.h"
+#include "LinkedList.h"
 #include "WallPost.h"
 
 using namespace std;
@@ -23,11 +23,12 @@ class Wall {
 		string getUsername() const;
 		void setUsername(string _username);
 		string toString();
+		string toStringDisplay();
 		void parseWall(string input);
 		~Wall();
 
 		// Linked list of wall posts on this wall.
-		DoubleLinkedList<WallPost> * posts;
+		List<WallPost> * posts;
 
 	private:
 		string username;

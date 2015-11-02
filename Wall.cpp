@@ -4,7 +4,7 @@ using namespace std;
 
 Wall::Wall()
 {
-	posts = new DoubleLinkedList<WallPost>();
+	posts = new LinkedList<WallPost>();
 }
 
 void Wall::addPost(WallPost post)
@@ -26,7 +26,7 @@ void Wall::addPost(string post, string mood)
 
 void Wall::removePost(int i)
 {
-	posts -> removeItem(i);
+	posts -> remove(i);
 }
 
 string Wall::getUsername() const
@@ -42,7 +42,7 @@ void Wall::setUsername(string _username)
 string Wall::toString()
 {
 	string result = "";
-	ListNode<WallPost> * l = new ListNode<WallPost>();
+	Node<WallPost> * l = new Node<WallPost>();
 	l = posts -> getHead();
 	if (posts -> getCount() == 0)
 	{
@@ -64,6 +64,35 @@ string Wall::toString()
 	return result;
 }
 
+string Wall::toStringDisplay()
+{
+	string result = "";
+	Node<WallPost> * l = new Node<WallPost>();
+	l = posts -> getHead();
+	if (posts -> getCount() == 0)
+	{
+		return result;
+	}
+	int i = 0;
+	if (posts -> getCount() == 1)
+	{
+		result += "(" + to_string(i) + ")\n";
+		result += (((WallPost)(l -> getData())).toString());
+		return result;
+	}
+	else
+	{
+		while(l)
+		{
+			result += "(" + to_string(i) + ")\n";
+			result.append(((WallPost)(l -> getData())).toString());
+			l = l -> getNext();
+			i++;
+		}
+	}	
+	return result;
+}
+
 void Wall::parseWall(string input)
 {
 	int i = 0;
@@ -74,7 +103,7 @@ void Wall::parseWall(string input)
 	istringstream iss(input);
 	while (getline(iss, token))
 	{
-		if ((i % 3) == 0)
+		if ((i % 3) == 0) 	
 		{
 			temp.setPost(token);
 		}

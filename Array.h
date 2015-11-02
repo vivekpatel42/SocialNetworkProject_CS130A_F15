@@ -1,8 +1,12 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+#include "List.h"
+
+using namespace std;
+
 template <class T>
-class Array : public class List
+class Array : public List<T>
 {
 	public:
 
@@ -20,7 +24,7 @@ class Array : public class List
 			numItems = 0;
 		}
 
-		bool insert (int pos, const T & item)
+		bool insert (int pos, const T & item) override
 		{
 			if (pos < 0 || pos >= maxLength)
 			{
@@ -49,7 +53,12 @@ class Array : public class List
 			return true;
 		}
 
-		bool remove (int pos)
+		bool appendItem(const T & item)
+		{
+			return insert(numItems, item);
+		}
+
+		bool remove (int pos) override
 		{
 			if (pos < 0 || pos >= maxLength)
 			{
@@ -57,7 +66,6 @@ class Array : public class List
 			}
 			else
 			{
-				data[pos] = NULL;
 				for (int i = pos + 1; i < numItems; i++)
 				{
 					data[i-1] = data[i];
@@ -67,7 +75,7 @@ class Array : public class List
 			}
 		}
 
-		void set (int pos, const T & item)
+		void set (int pos, const T & item) override
 		{
 			if (pos < 0 || pos >= numItems)
 			{
@@ -79,24 +87,37 @@ class Array : public class List
 			}
 		}
 
-		T const & get (int pos) const
+		T const & get (int pos) const override
 		{
-			if (pos < 0 || pos >= numItems)
-			{
-				return NULL;
-			}
-			else
-			{
-				return data[pos];
-			}
+			return data[pos];
+		}
+
+		int getCount() const
+		{
+			return numItems;
+		}
+
+		void clearList()
+		{
+			delete [] data;
+		}
+
+		Node<T> * getHead() const
+		{
+			return NULL;
+		}
+
+		~Array()
+		{
+			delete [] data;
+			data = NULL;
 		}
 
 	private:
 		T *data;
 		int numItems;
 		int maxLength;
-		const int DEFAULT_SIZE = 30;
-
+		const int DEFAULT_SIZE = 20;
 };
 
 #endif

@@ -1,10 +1,13 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <iostream>
+
 template <class T>
 class Node 
 {
 	public:
+
 		Node()
 		{
 			data = T();
@@ -13,7 +16,7 @@ class Node
 
 		explicit Node(const T & value)
 		{
-			data = value;
+			data = T(value);
 			next = NULL;
 		}
 
@@ -43,7 +46,7 @@ class Node
 
 	private:
 		T data;
-		Node<T> * next:
+		Node<T> *next;
 
 };
 

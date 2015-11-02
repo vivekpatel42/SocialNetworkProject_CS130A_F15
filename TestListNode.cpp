@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "ListNode.h"
-#include "DoubleLinkedList.h"
+#include "Node.h"
+#include "LinkedList.h"
 #include "WallPost.h"
 #include "Wall.h"
 #include "User.h"
@@ -34,7 +34,7 @@ int main()
 	// 	l = l -> getNext();
 	// }
 	UserNetwork * un = new UserNetwork();
-	un -> readUserList();
+	//un -> readUserList();
 	
 	User u = User("vpatel", "poop", "Vivek Patel", "Glendale");
 	u.addPost("This is Vivek's first post", "Facehole");
@@ -43,7 +43,7 @@ int main()
 	u2.addPost("This is the first post", "Happy");
 	u2.addPost("This is the second post", "Moderate");
 	un -> addUser(u2);
-	ListNode<User> * l1 = un -> userList -> getHead();
+	Node<User> * l1 = un -> userList -> getHead();
 	while(l1)
 	{
 		cout << ((User)(l1 -> getData())).toString();

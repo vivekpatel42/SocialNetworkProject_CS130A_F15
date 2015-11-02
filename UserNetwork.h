@@ -5,8 +5,8 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "ListNode.h"
-#include "DoubleLinkedList.h"
+#include "Node.h"
+#include "LinkedList.h"
 #include "User.h"
 
 using namespace std;
@@ -22,7 +22,7 @@ class UserNetwork {
 		void writeUserList();
 		void readUserList();
 		~UserNetwork();
-		DoubleLinkedList<User> * userList;
+		List<User> * userList;
 };
 
 

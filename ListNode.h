@@ -1,4 +1,4 @@
-e#ifndef LISTNODE_H
+#ifndef LISTNODE_H
 #define LISTNODE_H
 
 #include <iostream>
@@ -54,8 +54,7 @@ class ListNode {
 		} // Gets the ListNode object referred to by the PREV pointer.
 		
 		// Sets the ListNode object referred to by the PREV pointer.
-		void setPrev(ListNode<T> * l) 
-		{ 
+		void setPrev(ListNode<T> * l) 		{ 
 			prev = l; 
 		} 
 		

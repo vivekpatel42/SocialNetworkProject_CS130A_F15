@@ -4,7 +4,7 @@ using namespace std;
 
 UserNetwork::UserNetwork()
 {
-	userList = new DoubleLinkedList<User>();
+	userList = new LinkedList<User>();
 }
 
 void UserNetwork::addUser(User u)
@@ -14,13 +14,13 @@ void UserNetwork::addUser(User u)
 
 void UserNetwork::deleteUser(string username)
 {
-	ListNode<User> * l = userList -> getHead();
+	Node<User> * l = userList -> getHead();
 	int n = 0;
 	while (l)
 	{
 		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
 		{
-			userList -> removeItem(n);
+			userList -> remove(n);
 			return;
 		}
 		l = l -> getNext();
@@ -30,8 +30,12 @@ void UserNetwork::deleteUser(string username)
 
 bool UserNetwork::contains(string username)
 {
-	ListNode<User> * l = userList -> getHead();
-	while(l)
+	if ((userList -> getCount()) <= 0)
+	{
+		return false;
+	}
+	Node<User> * l = userList -> getHead();
+	while(l -> getNext())
 	{
 		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
 		{
@@ -39,12 +43,16 @@ bool UserNetwork::contains(string username)
 		}
 		l = l -> getNext();
 	}
+	if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+	{
+		return true;
+	}
 	return false;
 }
 
 User UserNetwork::getUser(string username)
 {
-	ListNode<User> * l = userList -> getHead();
+	Node<User> * l = userList -> getHead();
 	while(l)
 	{
 		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
@@ -57,14 +65,19 @@ User UserNetwork::getUser(string username)
 
 void UserNetwork::writeUserList()
 {
+	if ((userList -> getCount()) == 0)
+	{
+		return;
+	}
 	ofstream outfile;
-	outfile.open("userList.txt", ofstream::out | ofstream::trunc);
-	ListNode<User> * l = userList -> getHead();
-	while (l)
+	outfile.open("userList.txt");
+	Node<User> * l = userList -> getHead();
+	while (l -> getNext())
 	{
 		outfile << ((User)(l -> getData())).toString();
 		l = l -> getNext();
 	}
+	outfile << ((User)(l -> getData())).toStringLast();
 	outfile.close();
 }
 
@@ -72,7 +85,7 @@ void UserNetwork::readUserList()
 {
 	userList -> clearList();
 	delete userList;
-	userList = new DoubleLinkedList<User>();
+	userList = new LinkedList<User>();
 	ifstream infile;
 	infile.open("userList.txt");
 	string s, wholeFile;
@@ -110,4 +123,5 @@ void UserNetwork::readUserList()
 }
 
 UserNetwork::~UserNetwork()
-{}
+{
+}

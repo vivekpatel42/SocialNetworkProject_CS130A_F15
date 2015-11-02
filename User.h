@@ -5,8 +5,9 @@
 #include <sstream>
 #include <string>
 #include <cstring>
-#include "ListNode.h"
-#include "DoubleLinkedList.h"
+#include "Node.h"
+#include "LinkedList.h"
+#include "Bag.h"
 #include "Wall.h"
 
 using namespace std;
@@ -33,8 +34,11 @@ class User {
 		void deletePost(int i);
 		string getUserInfo() const;
 		string toString();
+		string toStringLast();
 		void parseUserInfo(string userInfo);
 		~User();
+		Bag<User> * friends;
+		Bag<User> * friendRequests;	
 	private:
 		Wall * userWall;
 		string username;

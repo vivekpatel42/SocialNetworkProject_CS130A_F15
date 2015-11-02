@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include "ListNode.h"
-#include "DoubleLinkedList.h"
+#include "Node.h"
+#include "LinkedList.h"
 
 using namespace std;
 

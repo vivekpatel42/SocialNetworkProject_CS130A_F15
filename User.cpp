@@ -4,6 +4,8 @@ using namespace std;
 
 User::User()
 {
+	friends = new Bag<User>();
+	friendRequests = new Bag<User>();
 	userWall = new Wall();
 	username = "";
 	password = "";
@@ -13,6 +15,8 @@ User::User()
 
 User::User(string _username)
 {
+	friends = new Bag<User>();
+	friendRequests = new Bag<User>();
 	userWall = new Wall();
 	username = _username;
 	password = "";
@@ -22,15 +26,20 @@ User::User(string _username)
 
 User::User(string _username, string _password, string _fullName)
 {
+	friends = new Bag<User>();
+	friendRequests = new Bag<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
 	fullName = _fullName;
 	city = "";
+	
 }
 
 User::User(string _username, string _password, string _fullName, string _city)
 {
+	friends = new Bag<User>();
+	friendRequests = new Bag<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
@@ -113,9 +122,16 @@ string User::getUserInfo() const
 
 string User::toString()
 {
-	string result = (getUserInfo());
+	string result = getUserInfo();
 	result += userWall -> toString();
 	result += '\f';
+	return result;
+}
+
+string User::toStringLast()
+{
+	string result = getUserInfo();
+	result += userWall -> toString();
 	return result;
 }
 

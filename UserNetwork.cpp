@@ -75,10 +75,15 @@ void UserNetwork::writeUserList()
 	while (l -> getNext())
 	{
 		outfile << ((User)(l -> getData())).toString();
-		l = l -> getNext();
+		l = l -> getNext(); 
 	}
 	outfile << ((User)(l -> getData())).toStringLast();
 	outfile.close();
+	outfile.open("friends.txt");
+	outfile.close();
+	outfile.open("friendRequests.txt");
+	outfile.close();
+
 }
 
 void UserNetwork::readUserList()

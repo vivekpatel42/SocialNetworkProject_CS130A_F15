@@ -1,6 +1,8 @@
 #ifndef BAG_H
 #define BAG_H
 
+#include <iostream>
+
 using namespace std;
 
 template <class T>
@@ -42,7 +44,7 @@ class Bag
 		{
 		}
 
-		T data[50];
+		T data[10];
 
 	private:
 		int count;

@@ -80,6 +80,12 @@ class LinkedList : public List<T>
 			{
 				return false;
 			}
+			else if (pos == 0 && numItems == 1)
+			{
+				head = NULL;
+				numItems--;
+				return true;
+			}
 			else if (pos == 0)
 			{
 				Node<T> * n = head;

@@ -4,8 +4,8 @@ using namespace std;
 
 User::User()
 {
-	friends = new Bag<User>();
-	friendRequests = new Bag<User>();
+	friends = new LinkedList<User>();
+	friendRequests = new LinkedList<User>();
 	userWall = new Wall();
 	username = "";
 	password = "";
@@ -15,8 +15,8 @@ User::User()
 
 User::User(string _username)
 {
-	friends = new Bag<User>();
-	friendRequests = new Bag<User>();
+	friends = new LinkedList<User>();
+	friendRequests = new LinkedList<User>();
 	userWall = new Wall();
 	username = _username;
 	password = "";
@@ -26,20 +26,20 @@ User::User(string _username)
 
 User::User(string _username, string _password, string _fullName)
 {
-	friends = new Bag<User>();
-	friendRequests = new Bag<User>();
+	friends = new LinkedList<User>();
+	friendRequests = new LinkedList<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
 	fullName = _fullName;
 	city = "";
-	
+
 }
 
 User::User(string _username, string _password, string _fullName, string _city)
 {
-	friends = new Bag<User>();
-	friendRequests = new Bag<User>();
+	friends = new LinkedList<User>();
+	friendRequests = new LinkedList<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
@@ -112,6 +112,16 @@ void User::deletePost(int i)
 	userWall -> removePost(i);
 }
 
+void User::addFriend(User u)
+{
+	friends -> appendItem(u);
+}
+
+void User::addFriendRequest(User u)
+{
+	friendRequests -> appendItem(u);
+}
+
 string User::getUserInfo() const
 {
 	string result = username + "\n" + password + "\n" 
@@ -132,6 +142,12 @@ string User::toStringLast()
 {
 	string result = getUserInfo();
 	result += userWall -> toString();
+	return result;
+}
+
+string User::searchUserInfo()
+{
+	string result = fullName + "\n" + city + "\n";
 	return result;
 }
 

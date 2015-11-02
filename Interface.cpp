@@ -10,6 +10,8 @@
 
 using namespace std;
 
+void searchUser(User * u, UserNetwork * network);
+
 int main()
 {
 	User currentUser = User();
@@ -34,10 +36,12 @@ int main()
 		{
 			char userInput;
 			cout << "Logged in as " << currentUser.getUsername() << endl << "--------------------------------------" << endl;
+			cout << "Pending friend requests: " << (currentUser.friendRequests) -> getCount() << endl << "--------------------------------------" << endl;
 			cout << "What would you like to do next?" << endl;
 			cout << "Add a new post. (a)" << endl;
 			cout << "Display wall. (d)" << endl;
 			cout << "Erase post. (e)" << endl;
+			cout << "View pending friend requests. (f)" << endl;
 			cout << "Search user network. (s)" << endl;
 			cout << "Delete user profile. (t)" << endl; // t for truncate
 			cout << "Back to main menu. (b)" << endl;
@@ -68,10 +72,24 @@ int main()
 				cin >> del;
 				(currentUser.getWall()) -> removePost(del);
 			}
+			else if (input == 'v')
+			{
+				int requestCount = 0;
+				Node<User> * n = (currentUser.friendRequests) -> getHead();
+				cout << "Friend requests: " << endl << "--------------------------------------" << endl;
+				while (n)
+				{
+					cout << "(" << to_string(requestCount) << ")\n" << ((User)(n -> getData())).searchUserInfo();
+					requestCount++;
+					n = n -> getNext();
+				}
+
+			}
 			else if (input == 's')
 			{
-				// Yet to be implemented.
+				searchUser(&currentUser, un);
 			}
+			// Fix: Cannot delete the first user.
 			else if (input == 't')
 			{
 				char confirm;
@@ -159,3 +177,32 @@ int main()
 	un -> writeUserList();
 	return 0;
 };
+
+void searchUser(User * u, UserNetwork * network)
+{
+	bool running = true;
+	string input;
+	int i = 0;
+	while (running)
+	{
+		cout << "Please enter your search query: ";
+		getline(cin, input);
+		Node<User> * n = network -> userList -> getHead();
+		while (n)
+		{
+			if ((((User)(n -> getData())).getUsername().find(input) != string::npos) || 
+				(((User)(n -> getData())).getFullName().find(input) != string::npos))
+			{
+				cout << "(" << to_string(i) << ")\n" << ((User)(n -> getData())).searchUserInfo();
+			}
+			n = n -> getNext();
+			i++;
+		}
+		int user; 
+		cout << "Please enter the number of the user you would like to send a friend request to: ";
+		cin >> user;
+		((User)(network -> userList -> get(user))).friendRequests -> appendItem(*u);
+		running = false;
+	}
+	return;
+}

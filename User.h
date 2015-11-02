@@ -32,13 +32,16 @@ class User {
 		void addPost(string post);
 		void addPost(string post, string mood);
 		void deletePost(int i);
+		void addFriend(User u);
+		void addFriendRequest(User u);
 		string getUserInfo() const;
 		string toString();
 		string toStringLast();
+		string searchUserInfo();
 		void parseUserInfo(string userInfo);
 		~User();
-		Bag<User> * friends;
-		Bag<User> * friendRequests;	
+		List<User> * friends;
+		List<User> * friendRequests;	
 	private:
 		Wall * userWall;
 		string username;

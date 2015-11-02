@@ -4,26 +4,41 @@
 template <class T>
 class LinkedList : public class List
 {
-	
-	void insert (int pos, const T & item)
-	{
+	public:
+		LinkedList()
+		{
+			head = new Node();
+			head -> setNext(NULL);
+			length = 0;
+		}
 
-	}
+		bool insert (int pos, const T & item)
+		{
+			
+		}
 
-	void remove (int pos)
-	{
+		bool remove (int pos)
+		{
+			if (pos < 0 || pos >= numItems)
+			{
+				return false;
+			}
 
-	}
+		}
 
-	void set (int pos, const T & item)
-	{
+		void set (int pos, const T & item)
+		{
 
-	}
+		}
 
-	T const & get (int pos) const
-	{
+		T const & get (int pos) const
+		{
 
-	}
+		}
+
+	private:
+		Node<T> * head;
+		int numItems;
 
 };
 

@@ -2,6 +2,8 @@
 #define LIST_H
 
 #include <iostream>
+#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -26,6 +28,7 @@ class List
 		virtual Node<T> * getHead() const = 0;
 	
 		virtual bool appendItem(const T & item) = 0;
+
 };
 
 #endif

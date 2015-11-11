@@ -4,8 +4,8 @@ using namespace std;
 
 User::User()
 {
-	friends = new LinkedList<User>();
-	friendRequests = new LinkedList<User>();
+	friends = new Array<User>();
+	friendRequests = new Array<User>();
 	userWall = new Wall();
 	username = "";
 	password = "";
@@ -15,8 +15,8 @@ User::User()
 
 User::User(string _username)
 {
-	friends = new LinkedList<User>();
-	friendRequests = new LinkedList<User>();
+	friends = new Array<User>();
+	friendRequests = new Array<User>();
 	userWall = new Wall();
 	username = _username;
 	password = "";
@@ -26,8 +26,8 @@ User::User(string _username)
 
 User::User(string _username, string _password, string _fullName)
 {
-	friends = new LinkedList<User>();
-	friendRequests = new LinkedList<User>();
+	friends = new Array<User>();
+	friendRequests = new Array<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
@@ -38,8 +38,8 @@ User::User(string _username, string _password, string _fullName)
 
 User::User(string _username, string _password, string _fullName, string _city)
 {
-	friends = new LinkedList<User>();
-	friendRequests = new LinkedList<User>();
+	friends = new Array<User>();
+	friendRequests = new Array<User>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
@@ -142,6 +142,48 @@ string User::toStringLast()
 {
 	string result = getUserInfo();
 	result += userWall -> toString();
+	return result;
+}
+
+string User::friendsToString()
+{
+	string result;
+	for (int i = 0; i < (friends -> getCount()); i++)
+	{
+		result += ((User)(friends -> get(i))).username;
+	}
+	result += '\f';
+	return result;	
+}
+
+string User::friendsToStringLast()
+{
+	string result;
+	for (int i = 0; i < (friends -> getCount()); i++)
+	{
+		result += ((User)(friends -> get(i))).username;
+	}
+	return result;
+}
+
+string User::requestsToString()
+{
+	string result;
+	for (int i = 0; i < (friendRequests -> getCount()); i++)
+	{
+		result += ((User)(friendRequests -> get(i))).username;
+	}
+	result += '\f';
+	return result;
+}
+
+string User::requestsToStringLast()
+{
+	string result;
+	for (int i = 0; i < (friendRequests -> getCount()); i++)
+	{
+		result += ((User)(friendRequests -> get(i))).username;
+	}
 	return result;
 }
 

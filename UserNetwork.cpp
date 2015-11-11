@@ -69,21 +69,21 @@ void UserNetwork::writeUserList()
 	{
 		return;
 	}
-	ofstream outfile;
-	outfile.open("userList.txt");
+	ofstream mainUserFile, friendsFile, requestsFile;
+	mainUserFile.open("userList.txt");
+	friendsFile.open("friends.txt");
+	requestsFile.open("friendRequests.txt");
 	Node<User> * l = userList -> getHead();
 	while (l -> getNext())
 	{
-		outfile << ((User)(l -> getData())).toString();
-		l = l -> getNext(); 
+		mainUserFile << ((User)(l -> getData())).toString();
+		
+		l = l -> getNext();  
 	}
-	outfile << ((User)(l -> getData())).toStringLast();
-	outfile.close();
-	outfile.open("friends.txt");
-	outfile.close();
-	outfile.open("friendRequests.txt");
-	outfile.close();
-
+	mainUserFile << ((User)(l -> getData())).toStringLast();
+	mainUserFile.close();
+	friendsFile.close();
+	requestsFile.close();
 }
 
 void UserNetwork::readUserList()

@@ -60,7 +60,7 @@ class Array : public List<T>
 
 		bool remove (int pos) override
 		{
-			if (pos < 0 || pos >= maxLength)
+			if (pos < 0 || pos >= numItems)
 			{
 				return false;
 			}

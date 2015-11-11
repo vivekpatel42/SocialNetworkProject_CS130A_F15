@@ -37,6 +37,10 @@ class User {
 		string getUserInfo() const;
 		string toString();
 		string toStringLast();
+		string friendsToString();
+		string friendsToStringLast();
+		string requestsToString();
+		string requestsToStringLast();
 		string searchUserInfo();
 		void parseUserInfo(string userInfo);
 		~User();

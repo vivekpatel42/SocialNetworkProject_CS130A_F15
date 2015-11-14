@@ -97,6 +97,14 @@ class Array : public List<T>
 			return numItems;
 		}
 
+		void printList() const
+		{
+			for(int i = 0; i < numItems; i++)
+			{
+				cout << data[i];
+			}
+		}
+
 		void clearList()
 		{
 			delete [] data;

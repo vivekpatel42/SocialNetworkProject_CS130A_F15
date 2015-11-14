@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include "Node.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ class List
 	
 		virtual bool appendItem(const T & item) = 0;
 
+		virtual void printList() const;
 };
 
 #endif

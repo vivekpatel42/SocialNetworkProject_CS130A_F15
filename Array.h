@@ -117,7 +117,7 @@ class Array : public List<T>
 		T *data;
 		int numItems;
 		int maxLength;
-		const int DEFAULT_SIZE = 20;
+		const int DEFAULT_SIZE = 1000;
 };
 
 #endif

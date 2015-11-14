@@ -44,8 +44,8 @@ class User {
 		string searchUserInfo();
 		void parseUserInfo(string userInfo);
 		~User();
-		List<User> * friends;
-		List<User> * friendRequests;	
+		List<User*> * friends;
+		List<User*> * friendRequests;	
 	private:
 		Wall * userWall;
 		string username;

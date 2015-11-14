@@ -32,7 +32,7 @@ class Array : public List<T>
 			}
 			else
 			{
-				for (int i = numItems - 1; i >= pos; i++)
+				for (int i = numItems - 1; i >= pos; i--)
 				{
 					data[i+1] = data[i];
 				}
@@ -99,15 +99,21 @@ class Array : public List<T>
 
 		void printList() const
 		{
+			if (!data)
+			{
+				return;
+			}
 			for(int i = 0; i < numItems; i++)
 			{
-				cout << data[i];
+				cout << data[i] << endl;
 			}
 		}
 
+		// Sets all current data values to 0;
 		void clearList()
 		{
 			delete [] data;
+			numItems = 0;
 		}
 
 		Node<T> * getHead() const

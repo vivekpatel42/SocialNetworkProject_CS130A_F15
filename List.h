@@ -30,7 +30,7 @@ class List
 	
 		virtual bool appendItem(const T & item) = 0;
 
-		virtual void printList() const;
+		virtual void printList() const = 0;
 };
 
 #endif

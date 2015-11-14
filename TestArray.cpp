@@ -2,23 +2,15 @@
 #include <string>
 #include <cstring>
 #include "Array.h"
-
+#include "User.h"
 
 using namespace std;
 
 
 int main()
 {
-	Array<string> * arrayList = new Array<string>();
-	arrayList -> appendItem("a");
-	arrayList -> appendItem("b");
-	arrayList -> appendItem("c");
-	arrayList -> appendItem("d");
-	arrayList -> appendItem("e");
-	arrayList -> insert(5, "pls");
-	arrayList -> insert(4, "no");
-	arrayList -> remove(2);
-	arrayList -> printList();
-	arrayList -> clearList();
-	arrayList -> printList();		
+	Array<User*> * arrayList = new Array<User*>();
+	User* myUser = new User("pls");
+	arrayList -> appendItem(myUser);
+	cout << ((User*)(arrayList -> get(0))) -> toString();	
 }

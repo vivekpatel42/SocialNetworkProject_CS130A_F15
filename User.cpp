@@ -4,8 +4,8 @@ using namespace std;
 
 User::User()
 {
-	friends = new Array<User>();
-	friendRequests = new Array<User>();
+	friends = new Array<User*>();
+	friendRequests = new Array<User*>();
 	userWall = new Wall();
 	username = "";
 	password = "";
@@ -15,8 +15,8 @@ User::User()
 
 User::User(string _username)
 {
-	friends = new Array<User>();
-	friendRequests = new Array<User>();
+	friends = new Array<User*>();
+	friendRequests = new Array<User*>();
 	userWall = new Wall();
 	username = _username;
 	password = "";
@@ -26,8 +26,8 @@ User::User(string _username)
 
 User::User(string _username, string _password, string _fullName)
 {
-	friends = new Array<User>();
-	friendRequests = new Array<User>();
+	friends = new Array<User*>();
+	friendRequests = new Array<User*>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;
@@ -38,8 +38,8 @@ User::User(string _username, string _password, string _fullName)
 
 User::User(string _username, string _password, string _fullName, string _city)
 {
-	friends = new Array<User>();
-	friendRequests = new Array<User>();
+	friends = new Array<User*>();
+	friendRequests = new Array<User*>();
 	userWall = new Wall();
 	username = _username;
 	password = _password;

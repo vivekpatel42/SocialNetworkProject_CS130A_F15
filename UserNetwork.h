@@ -21,6 +21,8 @@ class UserNetwork {
 		User getUser(string username);
 		void writeUserList();
 		void readUserList();
+		void readFriendsList();
+		void readRequestsList();
 		~UserNetwork();
 		List<User*> * userList;
 };

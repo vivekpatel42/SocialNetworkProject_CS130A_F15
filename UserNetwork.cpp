@@ -77,9 +77,13 @@ void UserNetwork::writeUserList()
 	while (l -> getNext())
 	{
 		mainUserFile << ((User*)(l -> getData())) -> toString();
+		friendsFile << ((User*)(l -> getData())) -> friendsToString();
+		requestsFile << ((User*)(l -> getData())) -> requestsToString();
 		l = l -> getNext();  
 	}
 	mainUserFile << ((User*)(l -> getData())) -> toStringLast();
+	friendsFile << ((User*)(l -> getData())) -> friendsToStringLast();
+	requestsFile << ((User*)(l -> getData())) -> requestsToStringLast();
 	mainUserFile.close();
 	friendsFile.close();
 	requestsFile.close();
@@ -103,6 +107,45 @@ void UserNetwork::readUserList()
 	{
 		User * tempUser = new User();
 		Wall * tempWall = new Wall();
+		string input;
+		temp = "";
+		istringstream iss2(token);
+		for (int i = 0; i < 4; i++)
+		{
+			getline(iss2, temp);
+			input += temp + '\n';
+		}
+		tempUser -> parseUserInfo(input);
+		input = "";
+		temp = "";
+		while (getline(iss2, temp))
+		{	
+			input += temp + '\n';
+		}
+		tempWall -> parseWall(input);
+		tempWall -> setUsername(tempUser -> getUsername());
+		tempUser -> setWall(tempWall);
+		addUser(tempUser);
+	}
+	infile.close();
+	readFriendsList();
+	readRequestsList();
+}
+
+void UserNetwork::readFriendsList()
+{
+	ifstream infile;
+	infile.open("friends.txt");
+	string s, wholeFile;
+	while (getline(infile, s))
+	{
+		wholeFile += s + "\n";		
+	}
+	string token, temp;
+	istringstream iss1(wholeFile);
+	Node<User*> * l = userList -> getHead();
+	while (getline(iss1, token, '\f'))
+	{
 		string input;
 		temp = "";
 		istringstream iss2(token);

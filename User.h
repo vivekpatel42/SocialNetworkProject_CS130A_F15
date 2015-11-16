@@ -7,7 +7,6 @@
 #include <cstring>
 #include "Node.h"
 #include "LinkedList.h"
-#include "Bag.h"
 #include "Wall.h"
 #include "Array.h"
 

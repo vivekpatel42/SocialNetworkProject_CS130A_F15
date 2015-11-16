@@ -11,6 +11,9 @@ int main()
 {
 	Array<User*> * arrayList = new Array<User*>();
 	User* myUser = new User("pls", "where", "am", "I");
+	User* herUser = new User("omg", "pls", "yes");
 	arrayList -> appendItem(myUser);
-	cout << ((User*)(arrayList -> get(0))) -> toString();	
+	arrayList -> appendItem(herUser);
+	arrayList -> remove(0);
+	cout << ((User*)(arrayList -> get(0))) -> toString();
 }

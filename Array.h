@@ -70,6 +70,7 @@ class Array : public List<T>
 				{
 					data[i-1] = data[i];
 				}
+				data[numItems-1] = NULL;
 				numItems--;
 				return true;
 			}

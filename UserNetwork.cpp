@@ -146,25 +146,36 @@ void UserNetwork::readFriendsList()
 	Node<User*> * l = userList -> getHead();
 	while (getline(iss1, token, '\f'))
 	{
-		string input;
-		temp = "";
 		istringstream iss2(token);
-		for (int i = 0; i < 4; i++)
+		while(getline(iss2, temp))
 		{
-			getline(iss2, temp);
-			input += temp + '\n';
+			((User*)(l -> getData())) -> addFriend(getUser(temp));
 		}
-		tempUser -> parseUserInfo(input);
-		input = "";
-		temp = "";
-		while (getline(iss2, temp))
-		{	
-			input += temp + '\n';
+		l = l -> getNext();
+	}
+	infile.close();
+}
+
+void UserNetwork::readRequestsList()
+{
+	ifstream infile;
+	infile.open("requests.txt");
+	string s, wholeFile;
+	while (getline(infile, s))
+	{
+		wholeFile += s + "\n";		
+	}
+	string token, temp;
+	istringstream iss1(wholeFile);
+	Node<User*> * l = userList -> getHead();
+	while (getline(iss1, token, '\f'))
+	{
+		istringstream iss2(token);
+		while(getline(iss2, temp))
+		{
+			((User*)(l -> getData())) -> addFriendRequest(getUser(temp));
 		}
-		tempWall -> parseWall(input);
-		tempWall -> setUsername(tempUser -> getUsername());
-		tempUser -> setWall(tempWall);
-		addUser(tempUser);
+		l = l -> getNext();
 	}
 	infile.close();
 }

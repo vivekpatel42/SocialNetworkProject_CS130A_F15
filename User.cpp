@@ -20,7 +20,6 @@ User::User(string _username)
 	userWall = new Wall();
 	username = _username;
 	password = "";
-	fullName = "";
 	city = "";	
 }
 
@@ -122,6 +121,30 @@ void User::addFriendRequest(User* u)
 	friendRequests -> appendItem(u);
 }
 
+bool User::containsFriend(string _username)
+{
+	for (int i = 0; i < (friends -> getCount()); i++)
+	{
+		if(_username.compare(((User*)(friends -> get(i))) -> getUsername()) == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+}
+
+bool User::containsRequest(string _username)
+{
+	for (int i = 0; i < (friendRequests -> getCount()); i++)
+	{
+		if(_username.compare(((User*)(friendRequests -> get(i))) -> getUsername()) == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+}
+
 string User::getUserInfo() const
 {
 	string result = username + "\n" + password + "\n" 
@@ -150,7 +173,7 @@ string User::friendsToString()
 	string result;
 	for (int i = 0; i < (friends -> getCount()); i++)
 	{
-		result += ((User*)(friends -> get(i))) -> username;
+		result += ((User*)(friends -> get(i))) -> getUsername();
 		result += '\n';
 	}
 	result += '\f';

@@ -14,7 +14,7 @@ void searchUser(User * u, UserNetwork * network);
 
 int main()
 {
-	User currentUser = User();
+	User* currentUser;
 	UserNetwork * un = new UserNetwork();
 	un -> readUserList();
 	bool running = true, program = false;
@@ -35,15 +35,15 @@ int main()
 		while (program)
 		{
 			char userInput;
-			cout << "Logged in as " << currentUser.getUsername() << endl << "--------------------------------------" << endl;
-			cout << "Pending friend requests: " << (currentUser.friendRequests) -> getCount() << endl << "--------------------------------------" << endl;
+			cout << "Logged in as " << currentUser -> getUsername() << endl << "--------------------------------------" << endl;
+			cout << "Pending friend requests: " << (currentUser -> friendRequests) -> getCount() << endl << "--------------------------------------" << endl;
 			cout << "What would you like to do next?" << endl;
 			cout << "Add a new post. (a)" << endl;
-			cout << "Display wall. (d)" << endl;
+			cout << "Display wall. (w)" << endl;
 			cout << "Erase post. (e)" << endl;
-			cout << "View pending friend requests. (f)" << endl;
+			cout << "View/accept/delete pending friend requests. (v)" << endl;
 			cout << "Search user network. (s)" << endl;
-			cout << "Delete user profile. (t)" << endl; // t for truncate
+			cout << "Delete user profile. (d)" << endl; // t for truncate
 			cout << "Back to main menu. (b)" << endl;
 			cout << "Exit the program. (x)" << endl << "--------------------------------------" << endl;
 			cin >> input;
@@ -55,49 +55,70 @@ int main()
 				getline(cin, status);
 				cout << "Please enter your mood: ";
 				getline(cin, mood);
-				currentUser.addPost(status, mood);
+				currentUser -> addPost(status, mood);
 			}
-			else if (input == 'd')
+			else if (input == 'w')
 			{
 				cout << "--------------------------------------" << endl;
-				cout << (currentUser.getWall()) -> toStringDisplay();
+				cout << (currentUser -> getWall()) -> toStringDisplay();
 				cout << "--------------------------------------" << endl;
 			}
 			else if (input == 'e')
 			{
 				int del;
 				cout << "Which post would you like to delete? (Select the number of the post)" << endl << "--------------------------------------" << endl;
-				cout << (currentUser.getWall()) -> toStringDisplay();
+				cout << (currentUser -> getWall()) -> toStringDisplay();
 				cout << "--------------------------------------" << endl;
 				cin >> del;
-				(currentUser.getWall()) -> removePost(del);
+				(currentUser -> getWall()) -> removePost(del);
 			}
 			else if (input == 'v')
 			{
-				int requestCount = 0;
-				Node<User*> * n = (currentUser.friendRequests) -> getHead();
 				cout << "Friend requests: " << endl << "--------------------------------------" << endl;
-				while (n)
+				for(int i = 0; i < (currentUser -> friendRequests) -> getCount(); i++)
 				{
-					cout << "(" << to_string(requestCount) << ")\n" << ((User*)(n -> getData())) -> searchUserInfo();
-					requestCount++;
-					n = n -> getNext();
+					cout << "(" << to_string(i) << "): " << ((User*)(currentUser -> friendRequests -> get(i))) -> searchUserInfo();
 				}
-
+				char requestAction;
+				cout << "What would you like to do next?" << endl << "--------------------------------------" << endl;
+				cout << "Accept request! (a)" << endl;
+				cout << "Delete request. (d)" << endl;
+				cin >> requestAction;
+				if (requestAction == 'a')
+				{
+					int requestAccept;
+					cout << "Please type the number of the user you would like to befriend: ";
+					cin >> requestAccept;
+					if (requestAccept >= 0 && requestAccept < (currentUser -> friendRequests) -> getCount())
+					{
+						currentUser -> addFriend(((User*)(currentUser -> friendRequests -> get(requestAccept))));
+						currentUser -> friendRequests -> remove(requestAccept);
+					}
+				}
+				else if (requestAction == 'd')
+				{
+					int requestDelete;
+					cout << "Please type the request you would like to delete: ";
+					cin >> requestDelete;
+					if (requestDelete >= 0 && requestDelete < (currentUser -> friendRequests) -> getCount())
+					{
+						currentUser -> friendRequests -> remove(requestDelete);
+					}
+				}
 			}
 			else if (input == 's')
 			{
-				searchUser(&currentUser, un);
+				searchUser(currentUser, un);
 			}
 			// Fix: Cannot delete the first user.
-			else if (input == 't')
+			else if (input == 'd')
 			{
 				char confirm;
 				cout << "Are you sure? This cannot be undone!!! (Y or N)" << endl << "--------------------------------------" << endl;
 				cin >> confirm;
 				if (confirm == 'y' || confirm == 'Y')
 				{
-					un -> deleteUser(currentUser.getUsername());
+					un -> deleteUser(currentUser -> getUsername());
 					program = false;
 				}
 			}
@@ -134,7 +155,7 @@ int main()
 					getline(cin, newFullName);
 					cout << "Please enter the city you are from: ";
 					getline(cin, newCity);
-					User u1 = User(newUsername, newPassword, newFullName, newCity);
+					User* u1 = new User(newUsername, newPassword, newFullName, newCity);
 					un -> addUser(u1);
 					currentUser = u1;
 					program = true;
@@ -150,10 +171,10 @@ int main()
 			cin >> usernameInput;
 			if (un -> contains(usernameInput))
 			{
-				User u2 = un -> getUser(usernameInput);
+				User* u2 = un -> getUser(usernameInput);
 				cout << "Password: " << endl;
 				cin >> passwordInput;
-				if (passwordInput.compare(u2.getPassword()) == 0) 
+				if (passwordInput.compare(u2 -> getPassword()) == 0) 
 				{
 					currentUser = u2;
 					program = true;
@@ -187,13 +208,13 @@ void searchUser(User * u, UserNetwork * network)
 	{
 		cout << "Please enter your search query: ";
 		getline(cin, input);
-		Node<User> * n = network -> userList -> getHead();
+		Node<User*> * n = network -> userList -> getHead();
 		while (n)
 		{
-			if ((((User)(n -> getData())).getUsername().find(input) != string::npos) || 
-				(((User)(n -> getData())).getFullName().find(input) != string::npos))
+			if (((((User*)(n -> getData())) -> getUsername()).find(input) != string::npos) || 
+				((((User*)(n -> getData())) -> getFullName()).find(input) != string::npos))
 			{
-				cout << "(" << to_string(i) << ")\n" << ((User)(n -> getData())).searchUserInfo();
+				cout << "(" << to_string(i) << ")\n" << ((User*)(n -> getData())) -> searchUserInfo();
 			}
 			n = n -> getNext();
 			i++;
@@ -201,7 +222,8 @@ void searchUser(User * u, UserNetwork * network)
 		int user; 
 		cout << "Please enter the number of the user you would like to send a friend request to: ";
 		cin >> user;
-		((User)(network -> userList -> get(user))).friendRequests -> appendItem(*u);
+		if ()
+		((User*)(network -> userList -> get(user))) -> friendRequests -> appendItem(u);
 		running = false;
 	}
 	return;

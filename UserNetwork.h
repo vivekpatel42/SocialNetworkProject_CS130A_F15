@@ -18,7 +18,7 @@ class UserNetwork {
 		void addUser(User* u);
 		void deleteUser(string username);
 		bool contains(string username);
-		User getUser(string username);
+		User* getUser(string username);
 		void writeUserList();
 		void readUserList();
 		void readFriendsList();

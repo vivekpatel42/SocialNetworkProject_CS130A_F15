@@ -34,6 +34,8 @@ class User {
 		void deletePost(int i);
 		void addFriend(User* u);
 		void addFriendRequest(User* u);
+		bool containsFriend(string _username);
+		bool containsRequest(string _username);
 		string getUserInfo() const;
 		string toString();
 		string toStringLast();

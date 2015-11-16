@@ -169,6 +169,11 @@ class LinkedList : public List<T>
 			numItems = 0;
 		}
 
+		void printList() const
+		{
+			return; 	
+		}
+
 		~LinkedList()
 		{
 			while (head) 

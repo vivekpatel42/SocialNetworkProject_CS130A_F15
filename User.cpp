@@ -112,12 +112,12 @@ void User::deletePost(int i)
 	userWall -> removePost(i);
 }
 
-void User::addFriend(User u)
+void User::addFriend(User* u)
 {
 	friends -> appendItem(u);
 }
 
-void User::addFriendRequest(User u)
+void User::addFriendRequest(User* u)
 {
 	friendRequests -> appendItem(u);
 }
@@ -150,7 +150,8 @@ string User::friendsToString()
 	string result;
 	for (int i = 0; i < (friends -> getCount()); i++)
 	{
-		result += ((User)(friends -> get(i))).username;
+		result += ((User*)(friends -> get(i))) -> username;
+		result += '\n';
 	}
 	result += '\f';
 	return result;	
@@ -161,7 +162,8 @@ string User::friendsToStringLast()
 	string result;
 	for (int i = 0; i < (friends -> getCount()); i++)
 	{
-		result += ((User)(friends -> get(i))).username;
+		result += ((User*)(friends -> get(i))) -> username;
+		result += '\n';
 	}
 	return result;
 }
@@ -171,7 +173,8 @@ string User::requestsToString()
 	string result;
 	for (int i = 0; i < (friendRequests -> getCount()); i++)
 	{
-		result += ((User)(friendRequests -> get(i))).username;
+		result += ((User*)(friendRequests -> get(i))) -> username;
+		result += '\n';
 	}
 	result += '\f';
 	return result;
@@ -182,7 +185,8 @@ string User::requestsToStringLast()
 	string result;
 	for (int i = 0; i < (friendRequests -> getCount()); i++)
 	{
-		result += ((User)(friendRequests -> get(i))).username;
+		result += ((User*)(friendRequests -> get(i))) -> username;
+		result += '\n';
 	}
 	return result;
 }

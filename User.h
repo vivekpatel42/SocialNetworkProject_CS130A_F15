@@ -33,8 +33,8 @@ class User {
 		void addPost(string post);
 		void addPost(string post, string mood);
 		void deletePost(int i);
-		void addFriend(User u);
-		void addFriendRequest(User u);
+		void addFriend(User* u);
+		void addFriendRequest(User* u);
 		string getUserInfo() const;
 		string toString();
 		string toStringLast();

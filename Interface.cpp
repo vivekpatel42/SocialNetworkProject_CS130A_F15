@@ -75,11 +75,11 @@ int main()
 			else if (input == 'v')
 			{
 				int requestCount = 0;
-				Node<User> * n = (currentUser.friendRequests) -> getHead();
+				Node<User*> * n = (currentUser.friendRequests) -> getHead();
 				cout << "Friend requests: " << endl << "--------------------------------------" << endl;
 				while (n)
 				{
-					cout << "(" << to_string(requestCount) << ")\n" << ((User)(n -> getData())).searchUserInfo();
+					cout << "(" << to_string(requestCount) << ")\n" << ((User*)(n -> getData())) -> searchUserInfo();
 					requestCount++;
 					n = n -> getNext();
 				}

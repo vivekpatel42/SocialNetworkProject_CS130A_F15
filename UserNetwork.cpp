@@ -4,21 +4,21 @@ using namespace std;
 
 UserNetwork::UserNetwork()
 {
-	userList = new LinkedList<User>();
+	userList = new LinkedList<User*>();
 }
 
-void UserNetwork::addUser(User u)
+void UserNetwork::addUser(User* u)
 {
 	userList -> appendItem(u);
 }
 
 void UserNetwork::deleteUser(string username)
 {
-	Node<User> * l = userList -> getHead();
+	Node<User*> * l = userList -> getHead();
 	int n = 0;
 	while (l)
 	{
-		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+		if (username.compare(((User*)(l -> getData())) -> getUsername()) == 0)
 		{
 			userList -> remove(n);
 			return;
@@ -34,30 +34,30 @@ bool UserNetwork::contains(string username)
 	{
 		return false;
 	}
-	Node<User> * l = userList -> getHead();
+	Node<User*> * l = userList -> getHead();
 	while(l -> getNext())
 	{
-		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+		if (username.compare(((User*)(l -> getData())) -> getUsername()) == 0)
 		{
 			return true;
 		}
 		l = l -> getNext();
 	}
-	if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+	if (username.compare(((User*)(l -> getData())) -> getUsername()) == 0)
 	{
 		return true;
 	}
 	return false;
 }
 
-User UserNetwork::getUser(string username)
+User* UserNetwork::getUser(string username)
 {
-	Node<User> * l = userList -> getHead();
+	Node<User*> * l = userList -> getHead();
 	while(l)
 	{
-		if (username.compare(((User)(l -> getData())).getUsername()) == 0)
+		if (username.compare(((User*)(l -> getData())) -> getUsername()) == 0)
 		{
-			return ((User)(l -> getData()));			
+			return ((User*)(l -> getData()));			
 		}
 		l = l -> getNext();
 	}
@@ -73,14 +73,13 @@ void UserNetwork::writeUserList()
 	mainUserFile.open("userList.txt");
 	friendsFile.open("friends.txt");
 	requestsFile.open("friendRequests.txt");
-	Node<User> * l = userList -> getHead();
+	Node<User*> * l = userList -> getHead();
 	while (l -> getNext())
 	{
-		mainUserFile << ((User)(l -> getData())).toString();
-		
+		mainUserFile << ((User*)(l -> getData())) -> toString();
 		l = l -> getNext();  
 	}
-	mainUserFile << ((User)(l -> getData())).toStringLast();
+	mainUserFile << ((User*)(l -> getData())) -> toStringLast();
 	mainUserFile.close();
 	friendsFile.close();
 	requestsFile.close();
@@ -90,7 +89,7 @@ void UserNetwork::readUserList()
 {
 	userList -> clearList();
 	delete userList;
-	userList = new LinkedList<User>();
+	userList = new LinkedList<User*>();
 	ifstream infile;
 	infile.open("userList.txt");
 	string s, wholeFile;
@@ -122,7 +121,7 @@ void UserNetwork::readUserList()
 		tempWall -> parseWall(input);
 		tempWall -> setUsername(tempUser -> getUsername());
 		tempUser -> setWall(tempWall);
-		addUser(*tempUser);
+		addUser(tempUser);
 	}
 	infile.close();
 }

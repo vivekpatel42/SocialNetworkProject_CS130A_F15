@@ -15,14 +15,14 @@ class UserNetwork {
 
 	public:
 		UserNetwork();
-		void addUser(User u);
+		void addUser(User* u);
 		void deleteUser(string username);
 		bool contains(string username);
 		User getUser(string username);
 		void writeUserList();
 		void readUserList();
 		~UserNetwork();
-		List<User> * userList;
+		List<User*> * userList;
 };
 
 

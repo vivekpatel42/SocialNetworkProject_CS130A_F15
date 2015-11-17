@@ -31,6 +31,7 @@ class User {
 		void setCity(string _city);
 		void addPost(string post);
 		void addPost(string post, string mood);
+		void addPost(string post, string mood, User * poster);
 		void deletePost(int i);
 		void addFriend(User* u);
 		void addFriendRequest(User* u);

@@ -24,6 +24,12 @@ void Wall::addPost(string post, string mood)
 	posts -> appendItem(wp);
 }
 
+void WallPost::addPost(string post, string mood, User * poster)
+{
+	WallPost wp = WallPost(post, mood, poster);
+	posts -> appendItem(wp);
+}
+
 void Wall::removePost(int i)
 {
 	posts -> remove(i);

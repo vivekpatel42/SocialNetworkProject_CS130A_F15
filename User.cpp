@@ -106,6 +106,11 @@ void User::addPost(string post, string mood)
 	userWall -> addPost(post, mood);
 }
 
+void User::addPost(string post, string mood, User* poster)
+{
+	userWall -> addPost(post, mood, poster);
+}
+
 void User::deletePost(int i)
 {
 	userWall -> removePost(i);

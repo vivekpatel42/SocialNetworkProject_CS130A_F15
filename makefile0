@@ -1,2 +1,2 @@
 all:
-	g++ -g -std=c++11 Interface.cpp WallPost.cpp Wall.cpp User.cpp UserNetwork.cpp -o social_network
+	g++ -g -std=c++11 Interface.cpp WallPost.cpp WallPostResponse.cpp Wall.cpp User.cpp UserNetwork.cpp -o social_network

@@ -9,6 +9,7 @@
 #include "Node.h"
 #include "LinkedList.h"
 #include "WallPost.h"
+#include "User.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Wall {
 		void addPost(WallPost post);
 		void addPost(string post);
 		void addPost(string post, string mood);
+		void addPost(string post, string mood, User * poster);
 		void removePost(int i);
 		string getUsername() const;
 		void setUsername(string _username);

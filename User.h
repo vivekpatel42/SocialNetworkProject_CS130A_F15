@@ -12,6 +12,8 @@
 
 using namespace std;
 
+class Wall;
+
 class User {
 
 	public:
@@ -50,7 +52,7 @@ class User {
 		List<User*> * friends;
 		List<User*> * friendRequests;	
 	private:
-		Wall * userWall;
+		Wall* userWall;
 		string username;
 		string password;
 		string fullName;

@@ -22,7 +22,7 @@ WallPost::WallPost(string _post) : post { _post }
 WallPost::WallPost(string _post, string _mood) : post { _post }, mood { _mood }
 {
 	postTime = time(0);
-	_poster = NULL;
+	poster = NULL;
 	commentList = new Array<WallPostReponse>();
 }
 

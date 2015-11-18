@@ -12,6 +12,9 @@
 
 using namespace std;
 
+class User;
+class WallPostResponse;
+
 class WallPost {
 
 	public:

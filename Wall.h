@@ -13,6 +13,9 @@
 
 using namespace std;
 
+class User;
+class WallPost;
+
 class Wall {
 
 	public:

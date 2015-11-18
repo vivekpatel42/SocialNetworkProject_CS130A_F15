@@ -222,7 +222,6 @@ void searchUser(User * u, UserNetwork * network)
 		int user; 
 		cout << "Please enter the number of the user you would like to send a friend request to: ";
 		cin >> user;
-		if ()
 		((User*)(network -> userList -> get(user))) -> friendRequests -> appendItem(u);
 		running = false;
 	}

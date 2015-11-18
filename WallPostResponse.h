@@ -4,9 +4,12 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include "Array.h"
 #include "User.h"
 
 using namespace std;
+
+class User;
 
 class WallPostResponse
 {

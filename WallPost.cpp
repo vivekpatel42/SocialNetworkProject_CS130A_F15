@@ -8,7 +8,7 @@ WallPost::WallPost()
 	postTime = time(0);
 	mood = "";
 	poster = NULL;
-	commentList = new Array<WallPostReponse>();
+	commentList = new Array<WallPostResponse>();
 }
 
 WallPost::WallPost(string _post) : post { _post }
@@ -16,20 +16,21 @@ WallPost::WallPost(string _post) : post { _post }
 	postTime = time(0);
 	mood = "";
 	poster = NULL;
-	commentList = new Array<WallPostReponse>();
+	commentList = new Array<WallPostResponse>();
 }
 
 WallPost::WallPost(string _post, string _mood) : post { _post }, mood { _mood }
 {
 	postTime = time(0);
 	poster = NULL;
-	commentList = new Array<WallPostReponse>();
+	commentList = new Array<WallPostResponse>();
 }
 
 WallPost::WallPost(string _post, string _mood, User* _poster) : post { _post }, mood { _mood }
 {
 	postTime = time(0);
 	poster = _poster;
+	commentList = new Array<WallPostResponse>();
 }
 
 string WallPost::getPost() const

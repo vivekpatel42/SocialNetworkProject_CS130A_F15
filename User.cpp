@@ -106,7 +106,7 @@ void User::addPost(string post, string mood)
 	userWall -> addPost(post, mood);
 }
 
-void User::addPost(string post, string mood, User* poster)
+void User::addPost(string post, string mood, string poster)
 {
 	userWall -> addPost(post, mood, poster);
 }
@@ -176,6 +176,11 @@ string User::toStringLast()
 string User::friendsToString()
 {
 	string result;
+	if(friends -> isEmpty())
+	{
+		result += "\f";
+		return result;
+	}
 	for (int i = 0; i < (friends -> getCount()); i++)
 	{
 		result += ((User*)(friends -> get(i))) -> getUsername();
@@ -188,6 +193,11 @@ string User::friendsToString()
 string User::friendsToStringLast()
 {
 	string result;
+	if(friends -> isEmpty())
+	{
+		result += "\f";
+		return result;
+	}
 	for (int i = 0; i < (friends -> getCount()); i++)
 	{
 		result += ((User*)(friends -> get(i))) -> username;
@@ -199,6 +209,11 @@ string User::friendsToStringLast()
 string User::requestsToString()
 {
 	string result;
+	if(friendRequests -> isEmpty())
+	{
+		result += "\f";
+		return result;
+	}
 	for (int i = 0; i < (friendRequests -> getCount()); i++)
 	{
 		result += ((User*)(friendRequests -> get(i))) -> username;
@@ -211,12 +226,27 @@ string User::requestsToString()
 string User::requestsToStringLast()
 {
 	string result;
+	if(friendRequests -> isEmpty())
+	{
+		result += "\f";
+		return result;
+	}
 	for (int i = 0; i < (friendRequests -> getCount()); i++)
 	{
 		result += ((User*)(friendRequests -> get(i))) -> username;
 		result += '\n';
 	}
 	return result;
+}
+
+string User::commentsToString()
+{
+	return userWall -> commentsToString();
+}
+
+string User::commentsToStringLast()
+{
+	return userWall -> commentsToStringLast();
 }
 
 string User::searchUserInfo()

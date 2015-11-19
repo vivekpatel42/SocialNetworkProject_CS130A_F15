@@ -42,6 +42,7 @@ int main()
 			cout << "Display wall. (w)" << endl;
 			cout << "Erase post. (e)" << endl;
 			cout << "View/accept/delete pending friend requests. (v)" << endl;
+			cout << "View current friends! (f)" << endl;
 			cout << "Search user network. (s)" << endl;
 			cout << "Delete user profile. (d)" << endl; // t for truncate
 			cout << "Back to main menu. (b)" << endl;
@@ -79,31 +80,42 @@ int main()
 				{
 					cout << "(" << to_string(i) << "): " << ((User*)(currentUser -> friendRequests -> get(i))) -> searchUserInfo();
 				}
-				char requestAction;
-				cout << "What would you like to do next?" << endl << "--------------------------------------" << endl;
-				cout << "Accept request! (a)" << endl;
-				cout << "Delete request. (d)" << endl;
-				cin >> requestAction;
-				if (requestAction == 'a')
+				if (!((currentUser -> friendRequests) -> isEmpty()))
 				{
-					int requestAccept;
-					cout << "Please type the number of the user you would like to befriend: ";
-					cin >> requestAccept;
-					if (requestAccept >= 0 && requestAccept < (currentUser -> friendRequests) -> getCount())
+					char requestAction;
+					cout << "What would you like to do next?" << endl << "--------------------------------------" << endl;
+					cout << "Accept request! (a)" << endl;
+					cout << "Delete request. (d)" << endl;
+					cin >> requestAction;
+					if (requestAction == 'a')
 					{
-						currentUser -> addFriend(((User*)(currentUser -> friendRequests -> get(requestAccept))));
-						currentUser -> friendRequests -> remove(requestAccept);
+						int requestAccept;
+						cout << "Please type the number of the user you would like to befriend: ";
+						cin >> requestAccept;
+						if (requestAccept >= 0 && requestAccept < (currentUser -> friendRequests) -> getCount())
+						{
+							currentUser -> addFriend(((User*)(currentUser -> friendRequests -> get(requestAccept))));
+							((User*)(currentUser -> friendRequests -> get(requestAccept))) -> addFriend(currentUser);
+							currentUser -> friendRequests -> remove(requestAccept);
+						}
 					}
-				}
-				else if (requestAction == 'd')
+					else if (requestAction == 'd')
+					{
+						int requestDelete;
+						cout << "Please type the request you would like to delete: ";
+						cin >> requestDelete;
+						if (requestDelete >= 0 && requestDelete < (currentUser -> friendRequests) -> getCount())
+						{
+							currentUser -> friendRequests -> remove(requestDelete);
+						}
+					}
+				}	
+			}
+			else if (input == 'f')
+			{
+				for(int i = 0; i < (currentUser -> friends -> getCount()); i++)
 				{
-					int requestDelete;
-					cout << "Please type the request you would like to delete: ";
-					cin >> requestDelete;
-					if (requestDelete >= 0 && requestDelete < (currentUser -> friendRequests) -> getCount())
-					{
-						currentUser -> friendRequests -> remove(requestDelete);
-					}
+					cout << ((User*)(currentUser -> friends -> get(i))) -> getFullName() << endl;
 				}
 			}
 			else if (input == 's')

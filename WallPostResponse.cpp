@@ -41,7 +41,19 @@ void WallPostResponse::setComment(string _comment)
 	comment = _comment;
 }
 
+void WallPostResponse::setCommentTime(time_t _commentTime)
+{
+	commentTime = _commentTime;
+}
+
 void WallPostResponse::setCommenter(User * _commenter)
 {
 	commenter = _commenter;
+}
+
+string WallPostResponse::toString()
+{
+	string result;
+	result += comment + "\n" + ctime(&commentTime) + "\n" + (commenter -> getUsername()) + "\n";
+	return result;
 }

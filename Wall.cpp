@@ -24,7 +24,7 @@ void Wall::addPost(string post, string mood)
 	posts -> appendItem(wp);
 }
 
-void WallPost::addPost(string post, string mood, User * poster)
+void Wall::addPost(string post, string mood, string poster)
 {
 	WallPost wp = WallPost(post, mood, poster);
 	posts -> appendItem(wp);
@@ -99,11 +99,37 @@ string Wall::toStringDisplay()
 	return result;
 }
 
+string Wall::commentsToString()
+{
+	string result;
+	Node<WallPost> * l = posts -> getHead();
+	while(l -> getNext())
+	{
+		result += ((WallPost)(l -> getData())).commentsToString();
+		l = l -> getNext();
+	}
+	result += ((WallPost)(l -> getData())).commentsToStringLast();
+	result += "\f";
+	return result;
+}
+
+string Wall::commentsToStringLast()
+{
+	string result;
+	Node<WallPost> * l = posts -> getHead();
+	while(l -> getNext())
+	{
+		result += ((WallPost)(l -> getData())).commentsToString();
+		l = l -> getNext();
+	}
+	((WallPost)(l -> getData())).commentsToStringLast();
+	return result;
+}
+
 void Wall::parseWall(string input)
 {
 	int i = 0;
 	string token;
-	time_t postTime;
 	struct tm timeStruct;
 	WallPost temp = WallPost();
 	istringstream iss(input);
@@ -115,7 +141,6 @@ void Wall::parseWall(string input)
 		}
 		else if ((i % 3) == 1)
 		{
-			
 			strptime(token.c_str(), "%a %b %d %T %Y", &timeStruct);
 			time_t _postTime = mktime(&timeStruct);
 			temp.setTime(_postTime);
@@ -126,6 +151,18 @@ void Wall::parseWall(string input)
 			addPost(temp);
 		}
 		i++;
+	}
+}
+
+void Wall::parseWallComments(string input, UserNetwork* un)
+{
+	string token;
+	istringstream iss1(input);
+	Node<WallPost> * l = posts -> getHead();
+	while(getline(iss1, token, '\r'))
+	{
+		((WallPost)(l -> getData())).parseWallPostComments(token, un);
+		l = l -> getNext();
 	}
 }
 

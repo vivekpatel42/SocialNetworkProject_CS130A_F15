@@ -70,7 +70,7 @@ class Array : public List<T>
 				{
 					data[i-1] = data[i];
 				}
-				data[numItems-1] = NULL;
+				data[numItems-1] = T();
 				numItems--;
 				return true;
 			}
@@ -98,16 +98,18 @@ class Array : public List<T>
 			return numItems;
 		}
 
+		bool isEmpty()
+		{
+			if(numItems == 0)
+			{
+				return true;
+			}
+			return false;
+		}
+
 		void printList() const
 		{
-			if (!data)
-			{
-				return;
-			}
-			for(int i = 0; i < numItems; i++)
-			{
-				cout << data[i] << endl;
-			}
+			return;
 		}
 
 		// Sets all current data values to 0;

@@ -52,6 +52,10 @@ bool UserNetwork::contains(string username)
 
 User* UserNetwork::getUser(string username)
 {
+	if(username.empty())
+	{
+		return nullptr;
+	}
 	Node<User*> * l = userList -> getHead();
 	while(l)
 	{
@@ -69,24 +73,28 @@ void UserNetwork::writeUserList()
 	{
 		return;
 	}
-	ofstream mainUserFile, friendsFile, requestsFile;
+	ofstream mainUserFile, friendsFile, requestsFile, commentsFile;
 	mainUserFile.open("userList.txt");
 	friendsFile.open("friends.txt");
 	requestsFile.open("friendRequests.txt");
+	commentsFile.open("comments.txt");
 	Node<User*> * l = userList -> getHead();
 	while (l -> getNext())
 	{
 		mainUserFile << ((User*)(l -> getData())) -> toString();
 		friendsFile << ((User*)(l -> getData())) -> friendsToString();
 		requestsFile << ((User*)(l -> getData())) -> requestsToString();
+		commentsFile << ((User*)(l -> getData())) -> commentsToString();
 		l = l -> getNext();  
 	}
 	mainUserFile << ((User*)(l -> getData())) -> toStringLast();
 	friendsFile << ((User*)(l -> getData())) -> friendsToStringLast();
 	requestsFile << ((User*)(l -> getData())) -> requestsToStringLast();
+	commentsFile << ((User*)(l -> getData())) -> commentsToStringLast();
 	mainUserFile.close();
 	friendsFile.close();
 	requestsFile.close();
+	commentsFile.close();
 }
 
 void UserNetwork::readUserList()
@@ -130,6 +138,7 @@ void UserNetwork::readUserList()
 	infile.close();
 	readFriendsList();
 	readRequestsList();
+	readCommentsList();
 }
 
 void UserNetwork::readFriendsList()
@@ -178,6 +187,25 @@ void UserNetwork::readRequestsList()
 		l = l -> getNext();
 	}
 	infile.close();
+}
+
+void UserNetwork::readCommentsList()
+{
+	ifstream infile;
+	infile.open("comments.txt");
+	string s, wholeFile;
+	while(getline(infile, s))
+	{
+		wholeFile += s + "\n";
+	}
+	string token, temp;
+	istringstream iss1(wholeFile);
+	Node<User*> * l = userList -> getHead();
+	while(getline(iss1, token, '\f'))
+	{
+		((Wall*)(((User*)(l -> getData())) -> getWall())) -> parseWallComments(token, (UserNetwork*)this);
+		l = l -> getNext();
+	}
 }
 
 UserNetwork::~UserNetwork()

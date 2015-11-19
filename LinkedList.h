@@ -10,6 +10,7 @@ template <class T>
 class LinkedList : public List<T>
 {
 	public:
+
 		LinkedList()
 		{
 			head = NULL;
@@ -154,6 +155,15 @@ class LinkedList : public List<T>
 		int getCount() const override
 		{
 			return numItems;
+		}
+
+		bool isEmpty()
+		{
+			if (numItems == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 
 		void clearList()

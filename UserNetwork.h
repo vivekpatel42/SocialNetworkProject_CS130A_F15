@@ -11,6 +11,8 @@
 
 using namespace std;
 
+class User;
+
 class UserNetwork {
 
 	public:
@@ -23,6 +25,8 @@ class UserNetwork {
 		void readUserList();
 		void readFriendsList();
 		void readRequestsList();
+		void readCommentsList();
+		
 		~UserNetwork();
 		List<User*> * userList;
 };

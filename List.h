@@ -24,6 +24,8 @@ class List
 
 		virtual int getCount() const = 0;
 
+		virtual bool isEmpty() = 0;
+
 		virtual void clearList() = 0;
 
 		virtual Node<T> * getHead() const = 0;
